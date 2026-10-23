@@ -1,0 +1,13 @@
+{
+  "name": "@cogni/game-detective",
+  "private": true,
+  "type": "module",
+  "description": "Game plugin: a detective catches thieves by their dictated trail",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "react": "^19.3.1"
+  }
+}

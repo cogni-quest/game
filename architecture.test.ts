@@ -45,6 +45,12 @@ const ZONES: readonly Zone[] = [
     allowed: ['@cogni/core', 'react'],
   },
   {
+    // A game draws tasks through its host and never looks inside them.
+    name: 'game plugin',
+    root: 'packages/games/*/src',
+    allowed: ['@cogni/core', 'react'],
+  },
+  {
     name: 'curriculum',
     root: 'packages/curriculum/src',
     allowed: ['@cogni/core', 'zod'],
