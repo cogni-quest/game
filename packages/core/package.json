@@ -1,0 +1,9 @@
+{
+  "name": "@cogni/core",
+  "private": true,
+  "type": "module",
+  "description": "The methodology: tasks, answers, attempts, the plugin registry. No React, no DOM, no cloud.",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}
