@@ -1,0 +1,6 @@
+node_modules
+dist
+coverage
+package-lock.json
+# Prose: wrapped by hand, and Prettier would re-flow every paragraph.
+*.md

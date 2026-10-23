@@ -1,0 +1,15 @@
+{
+  // The methodology must run without a browser: the core, the logic half of
+  // every task plugin and the curriculum data. Rather than keep a list of
+  // banned globals, this half is typechecked against a `lib` that has no DOM in
+  // it at all, so `document`, `window` and the rest are «cannot find name».
+  //
+  // Node's globals stay reachable (vitest's types pull them in). That is the
+  // honest boundary: the methodology runs in node, without a browser.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": ["node"]
+  },
+  "include": ["packages/core/src", "packages/tasks/*/src/logic", "packages/curriculum/src"]
+}
