@@ -1,0 +1,50 @@
+{
+  "name": "@cogni/curriculum",
+  "private": true,
+  "type": "module",
+  "description": "Curriculum graphs as data: topics, steps and their formats",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cogni/task-addition": "*",
+    "@cogni/task-angles": "*",
+    "@cogni/task-area": "*",
+    "@cogni/task-bonds": "*",
+    "@cogni/task-calendar": "*",
+    "@cogni/task-chain": "*",
+    "@cogni/task-clock": "*",
+    "@cogni/task-column": "*",
+    "@cogni/task-comparing": "*",
+    "@cogni/task-counting": "*",
+    "@cogni/task-difference": "*",
+    "@cogni/task-expressions": "*",
+    "@cogni/task-facts": "*",
+    "@cogni/task-groups": "*",
+    "@cogni/task-length-compare": "*",
+    "@cogni/task-maze": "*",
+    "@cogni/task-measure": "*",
+    "@cogni/task-missing": "*",
+    "@cogni/task-money": "*",
+    "@cogni/task-neighbours": "*",
+    "@cogni/task-number-line": "*",
+    "@cogni/task-odd-one-out": "*",
+    "@cogni/task-olympiad": "*",
+    "@cogni/task-pattern": "*",
+    "@cogni/task-perimeter": "*",
+    "@cogni/task-remainder": "*",
+    "@cogni/task-roman": "*",
+    "@cogni/task-ruler": "*",
+    "@cogni/task-sequence": "*",
+    "@cogni/task-shapes": "*",
+    "@cogni/task-sort": "*",
+    "@cogni/task-sudoku": "*",
+    "@cogni/task-times": "*",
+    "@cogni/task-units": "*",
+    "@cogni/task-word": "*"
+  }
+}

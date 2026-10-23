@@ -1,0 +1,448 @@
+{
+  "subject": "logic",
+  "textbook": "peterson",
+  "topics": [
+    {
+      "id": "sequences",
+      "title": "Числовые последовательности",
+      "needs": [],
+      "steps": [
+        {
+          "id": "sequences",
+          "title": "Продолжи ряд",
+          "formats": [
+            {
+              "plugin": "sequence",
+              "title": "продолжи ряд",
+              "sections": [
+                {
+                  "title": "шаг 1 вверх и вниз",
+                  "knobs": {
+                    "ask": "next",
+                    "step": 1
+                  }
+                },
+                {
+                  "title": "шаг 2",
+                  "knobs": {
+                    "ask": "next",
+                    "step": 2
+                  }
+                },
+                {
+                  "title": "шаг 5",
+                  "knobs": {
+                    "ask": "next",
+                    "step": 5
+                  }
+                },
+                {
+                  "title": "шаг 10",
+                  "knobs": {
+                    "ask": "next",
+                    "step": 10
+                  }
+                },
+                {
+                  "title": "растущий шаг 1, 2, 4, 7",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "next",
+                    "step": "growing"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "sequence",
+              "title": "пропуск в середине",
+              "sections": [
+                {
+                  "title": "шаг 1",
+                  "knobs": {
+                    "ask": "gap",
+                    "step": 1
+                  }
+                },
+                {
+                  "title": "шаг 2",
+                  "knobs": {
+                    "ask": "gap",
+                    "step": 2
+                  }
+                },
+                {
+                  "title": "шаг 5",
+                  "knobs": {
+                    "ask": "gap",
+                    "step": 5
+                  }
+                },
+                {
+                  "title": "шаг 10",
+                  "knobs": {
+                    "ask": "gap",
+                    "step": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "title": "Узоры из фигур",
+      "needs": [],
+      "steps": [
+        {
+          "id": "patterns",
+          "title": "Узоры из фигур",
+          "formats": [
+            {
+              "plugin": "pattern",
+              "title": "что дальше?",
+              "sections": [
+                {
+                  "title": "чередование двух",
+                  "knobs": {
+                    "ask": "next",
+                    "unit": "two"
+                  }
+                },
+                {
+                  "title": "повтор из трёх",
+                  "knobs": {
+                    "ask": "next",
+                    "unit": "three"
+                  }
+                },
+                {
+                  "title": "два признака: форма и цвет",
+                  "knobs": {
+                    "ask": "next",
+                    "unit": "two-features"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "pattern",
+              "title": "что пропущено?",
+              "sections": [
+                {
+                  "title": "чередование двух",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "missing",
+                    "unit": "two"
+                  }
+                },
+                {
+                  "title": "повтор из трёх",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "missing",
+                    "unit": "three"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "odd-one-out",
+      "title": "Лишний предмет",
+      "needs": ["patterns"],
+      "steps": [
+        {
+          "id": "odd-one-out",
+          "title": "Что лишнее?",
+          "formats": [
+            {
+              "plugin": "odd-one-out",
+              "title": "найди лишнюю картинку",
+              "sections": [
+                {
+                  "title": "по форме",
+                  "knobs": {
+                    "by": "shape"
+                  }
+                },
+                {
+                  "title": "по цвету или размеру",
+                  "knobs": {
+                    "by": "colour-size"
+                  }
+                },
+                {
+                  "title": "по смыслу",
+                  "knobs": {
+                    "by": "meaning"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "odd-one-out",
+              "title": "найди лишнее число",
+              "sections": [
+                {
+                  "title": "чётность",
+                  "source": "петерсон",
+                  "knobs": {
+                    "by": "parity"
+                  }
+                },
+                {
+                  "title": "кратность",
+                  "source": "петерсон",
+                  "knobs": {
+                    "by": "multiple"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sorting",
+      "title": "Классификация и сравнение",
+      "needs": ["odd-one-out"],
+      "steps": [
+        {
+          "id": "sorting",
+          "title": "Сравни и разложи",
+          "formats": [
+            {
+              "plugin": "facts",
+              "title": "кто выше? по фактам",
+              "sections": [
+                {
+                  "title": "два человека",
+                  "knobs": {
+                    "people": 2
+                  }
+                },
+                {
+                  "title": "три человека",
+                  "source": "петерсон",
+                  "knobs": {
+                    "people": 3
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "sort",
+              "title": "выбери все одного вида",
+              "sections": [
+                {
+                  "title": "по одному признаку",
+                  "knobs": {
+                    "by": "category"
+                  }
+                },
+                {
+                  "title": "по двум признакам",
+                  "source": "петерсон",
+                  "knobs": {
+                    "by": "two-features"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mazes",
+      "title": "Лабиринты",
+      "needs": [],
+      "steps": [
+        {
+          "id": "mazes",
+          "title": "Лабиринты",
+          "formats": [
+            {
+              "plugin": "maze",
+              "title": "какой выход ведёт к сокровищу?",
+              "sections": [
+                {
+                  "title": "маленький, 3 выхода",
+                  "knobs": {
+                    "size": "small",
+                    "exits": 3
+                  }
+                },
+                {
+                  "title": "большой, 4 выхода",
+                  "knobs": {
+                    "size": "big",
+                    "exits": 4
+                  }
+                },
+                {
+                  "title": "с ключом по пути",
+                  "source": "петерсон",
+                  "knobs": {
+                    "size": "big",
+                    "exits": 4,
+                    "key": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sudoku",
+      "title": "Судоку и магические квадраты",
+      "needs": ["sequences"],
+      "steps": [
+        {
+          "id": "sudoku",
+          "title": "Судоку и магические квадраты",
+          "formats": [
+            {
+              "plugin": "sudoku",
+              "title": "судоку 4×4",
+              "sections": [
+                {
+                  "title": "одна пустая клетка",
+                  "knobs": {
+                    "kind": "sudoku",
+                    "blanks": 1
+                  }
+                },
+                {
+                  "title": "две клетки подряд",
+                  "knobs": {
+                    "kind": "sudoku",
+                    "blanks": 2
+                  }
+                },
+                {
+                  "title": "три клетки",
+                  "knobs": {
+                    "kind": "sudoku",
+                    "blanks": 3
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "sudoku",
+              "title": "магический квадрат 3×3",
+              "sections": [
+                {
+                  "title": "одна пустая клетка",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "magic",
+                    "blanks": 1
+                  }
+                },
+                {
+                  "title": "две",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "magic",
+                    "blanks": 2
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "olympiad",
+      "title": "Олимпиадные",
+      "needs": ["sorting", "sequences"],
+      "steps": [
+        {
+          "id": "olympiad",
+          "title": "Олимпиадные задачи",
+          "formats": [
+            {
+              "plugin": "olympiad",
+              "title": "посчитай фигуры",
+              "sections": [
+                {
+                  "title": "отдельные",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "ask": "figures",
+                    "overlap": false
+                  }
+                },
+                {
+                  "title": "пересекающиеся",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "ask": "figures",
+                    "overlap": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "задачи на возраст",
+              "sections": [
+                {
+                  "title": "один шаг: разница не меняется",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "kind": "age-gap",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "два шага",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "kind": "age-later",
+                    "max": 30
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "olympiad",
+              "title": "взвешивания",
+              "sections": [
+                {
+                  "title": "замена одной гири",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "ask": "weighing",
+                    "chain": 1
+                  }
+                },
+                {
+                  "title": "цепочка замен",
+                  "source": "кенгуру",
+                  "knobs": {
+                    "ask": "weighing",
+                    "chain": 2
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

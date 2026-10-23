@@ -1,0 +1,3365 @@
+{
+  "subject": "math",
+  "textbook": "moro",
+  "topics": [
+    {
+      "id": "numbers-10",
+      "title": "Числа до 10",
+      "grade": 1,
+      "needs": [],
+      "steps": [
+        {
+          "id": "numbers-10",
+          "title": "Числа до 10: счёт, сравнение, соседи",
+          "formats": [
+            {
+              "plugin": "counting",
+              "title": "сколько предметов?",
+              "sections": [
+                {
+                  "title": "1–5 в ряд",
+                  "knobs": {
+                    "min": 1,
+                    "max": 5,
+                    "layout": "row"
+                  }
+                },
+                {
+                  "title": "1–5 вразброс",
+                  "knobs": {
+                    "min": 1,
+                    "max": 5,
+                    "layout": "scattered"
+                  }
+                },
+                {
+                  "title": "6–10 в рамке по пять",
+                  "knobs": {
+                    "min": 6,
+                    "max": 10,
+                    "layout": "frame"
+                  }
+                },
+                {
+                  "title": "6–10 вразброс",
+                  "knobs": {
+                    "min": 6,
+                    "max": 10,
+                    "layout": "scattered"
+                  }
+                },
+                {
+                  "title": "6–10 среди лишних",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 6,
+                    "max": 10,
+                    "layout": "scattered",
+                    "distractors": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "comparing",
+              "title": "что больше?",
+              "sections": [
+                {
+                  "title": "далёкие числа",
+                  "knobs": {
+                    "max": 10,
+                    "distance": "far"
+                  }
+                },
+                {
+                  "title": "соседние",
+                  "knobs": {
+                    "max": 10,
+                    "distance": "near"
+                  }
+                },
+                {
+                  "title": "с равенством",
+                  "knobs": {
+                    "max": 10,
+                    "distance": "equal"
+                  }
+                },
+                {
+                  "title": "число и картинка",
+                  "knobs": {
+                    "max": 10,
+                    "distance": "any",
+                    "picture": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "neighbours",
+              "title": "соседи числа",
+              "sections": [
+                {
+                  "title": "следующее",
+                  "knobs": {
+                    "max": 10,
+                    "ask": "next"
+                  }
+                },
+                {
+                  "title": "предыдущее",
+                  "knobs": {
+                    "max": 10,
+                    "ask": "previous"
+                  }
+                },
+                {
+                  "title": "между",
+                  "knobs": {
+                    "max": 10,
+                    "ask": "between"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "comparing",
+              "title": "★ сравни две группы",
+              "stars": 1,
+              "sections": [
+                {
+                  "title": "две группы против числа",
+                  "knobs": {
+                    "max": 10,
+                    "distance": "any",
+                    "groups": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "neighbours",
+              "title": "★ через одно",
+              "stars": 1,
+              "sections": [
+                {
+                  "title": "через одно после",
+                  "knobs": {
+                    "max": 10,
+                    "ask": "skip-next"
+                  }
+                },
+                {
+                  "title": "через одно перед",
+                  "knobs": {
+                    "max": 10,
+                    "ask": "skip-previous"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "★★ очередь",
+              "sections": [
+                {
+                  "title": "очередь до 10",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "queue",
+                    "max": 10
+                  }
+                }
+              ],
+              "stars": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "length-cm",
+      "title": "Длина: сантиметр",
+      "grade": 1,
+      "needs": ["numbers-10"],
+      "steps": [
+        {
+          "id": "length-cm",
+          "title": "Длиннее, короче, измерь линейкой",
+          "formats": [
+            {
+              "plugin": "length-compare",
+              "title": "что длиннее?",
+              "sections": [
+                {
+                  "title": "явно разные",
+                  "knobs": {
+                    "ask": "longer",
+                    "gap": "far"
+                  }
+                },
+                {
+                  "title": "почти равные",
+                  "knobs": {
+                    "ask": "longer",
+                    "gap": "near"
+                  }
+                },
+                {
+                  "title": "какая короче?",
+                  "knobs": {
+                    "ask": "shorter",
+                    "gap": "any"
+                  }
+                },
+                {
+                  "title": "не от одного края",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "longer",
+                    "gap": "any",
+                    "shifted": true
+                  }
+                },
+                {
+                  "title": "бывают одинаковые",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "shorter",
+                    "gap": "near",
+                    "shifted": true,
+                    "equal": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "ruler",
+              "title": "измерь линейкой",
+              "sections": [
+                {
+                  "title": "от нуля, до 10 см",
+                  "knobs": {
+                    "min": 2,
+                    "max": 10,
+                    "from": "zero"
+                  }
+                },
+                {
+                  "title": "не от нуля, до 10 см",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 2,
+                    "max": 10,
+                    "from": "any"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shapes",
+      "title": "Фигуры",
+      "grade": 1,
+      "needs": ["numbers-10"],
+      "steps": [
+        {
+          "id": "shapes",
+          "title": "Узнай и посчитай фигуры",
+          "formats": [
+            {
+              "plugin": "shapes",
+              "title": "узнай фигуру",
+              "sections": [
+                {
+                  "title": "круг, треугольник, квадрат, прямоугольник",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "familiar"
+                  }
+                },
+                {
+                  "title": "точка, прямая, луч, отрезок, кривая",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "lines"
+                  }
+                },
+                {
+                  "title": "ломаная и многоугольники",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "polygons"
+                  }
+                },
+                {
+                  "title": "повёрнутые, неровные",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "polygons",
+                    "rotated": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "shapes",
+              "title": "посчитай фигуры",
+              "sections": [
+                {
+                  "title": "треугольники среди 4–6 фигур",
+                  "knobs": {
+                    "ask": "count",
+                    "target": "triangle",
+                    "min": 4,
+                    "max": 6
+                  }
+                },
+                {
+                  "title": "квадраты среди 7–10",
+                  "knobs": {
+                    "ask": "count",
+                    "target": "square",
+                    "min": 7,
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "четырёхугольники, квадраты тоже",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "count",
+                    "target": "quadrilateral",
+                    "min": 7,
+                    "max": 10,
+                    "rotated": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "shapes",
+              "title": "найди все",
+              "sections": [
+                {
+                  "title": "4 фигуры",
+                  "knobs": {
+                    "ask": "find",
+                    "target": "triangle",
+                    "min": 4,
+                    "max": 4
+                  }
+                },
+                {
+                  "title": "8 фигур",
+                  "knobs": {
+                    "ask": "find",
+                    "target": "quadrilateral",
+                    "min": 8,
+                    "max": 8
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bonds-10",
+      "title": "Состав чисел до 10",
+      "grade": 1,
+      "needs": ["numbers-10"],
+      "steps": [
+        {
+          "id": "bonds-10",
+          "title": "Домик: состав числа",
+          "formats": [
+            {
+              "plugin": "bonds",
+              "title": "домик 5 = 2 + □",
+              "sections": [
+                {
+                  "title": "числа 2–5",
+                  "knobs": {
+                    "form": "house",
+                    "min": 2,
+                    "max": 5
+                  }
+                },
+                {
+                  "title": "числа 6–9",
+                  "knobs": {
+                    "form": "house",
+                    "min": 6,
+                    "max": 9
+                  }
+                },
+                {
+                  "title": "число 10",
+                  "knobs": {
+                    "form": "house",
+                    "min": 10,
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "bonds",
+              "title": "все пары для числа",
+              "sections": [
+                {
+                  "title": "числа до 5",
+                  "source": "петерсон",
+                  "knobs": {
+                    "form": "all-pairs",
+                    "min": 3,
+                    "max": 5
+                  }
+                },
+                {
+                  "title": "до 10",
+                  "source": "петерсон",
+                  "knobs": {
+                    "form": "all-pairs",
+                    "min": 6,
+                    "max": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-sub-10",
+      "title": "Сложение и вычитание в пределах 10",
+      "grade": 1,
+      "needs": ["bonds-10"],
+      "steps": [
+        {
+          "id": "add-sub-10",
+          "title": "± в пределах 10",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "sections": [
+                {
+                  "title": "+1",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "second": 1
+                  }
+                },
+                {
+                  "title": "+2",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "second": 2
+                  }
+                },
+                {
+                  "title": "+3",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "second": 3
+                  }
+                },
+                {
+                  "title": "+4",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "second": 4
+                  }
+                },
+                {
+                  "title": "+5 … +9 перестановкой",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "secondFrom": 5
+                  }
+                },
+                {
+                  "title": "+0",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "within-10",
+                    "zero": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "sections": [
+                {
+                  "title": "−1",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "second": 1
+                  }
+                },
+                {
+                  "title": "−2",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "second": 2
+                  }
+                },
+                {
+                  "title": "−3",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "second": 3
+                  }
+                },
+                {
+                  "title": "−4",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "second": 4
+                  }
+                },
+                {
+                  "title": "6 − □ … 10 − □ через состав",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "secondFrom": 5
+                  }
+                },
+                {
+                  "title": "−0 и n − n",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "within-10",
+                    "zero": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-1step",
+      "title": "Задачи в одно действие",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "word-1step",
+          "title": "Задача в одно действие",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "текстовая задача",
+              "sections": [
+                {
+                  "title": "сумма до 10",
+                  "knobs": {
+                    "kind": "sum",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "остаток до 10",
+                  "knobs": {
+                    "kind": "take",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "обратная: сколько подарили?",
+                  "knobs": {
+                    "kind": "gained",
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "картинка-история, текст читает учитель",
+              "sections": [
+                {
+                  "title": "сумма до 10",
+                  "knobs": {
+                    "kind": "sum",
+                    "max": 10,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "остаток до 10",
+                  "knobs": {
+                    "kind": "take",
+                    "max": 10,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "обратная: сколько подарили?",
+                  "knobs": {
+                    "kind": "gained",
+                    "max": 10,
+                    "picture": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-increase",
+      "title": "Увеличить / уменьшить на",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "word-increase",
+          "title": "Больше на, меньше на",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "голое «увеличь 7 на 3»",
+              "sections": [
+                {
+                  "title": "увеличить до 10",
+                  "knobs": {
+                    "kind": "increase",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "уменьшить до 10",
+                  "knobs": {
+                    "kind": "decrease",
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "текстовая «у Маши на 2 больше»",
+              "sections": [
+                {
+                  "title": "«больше на» до 10",
+                  "knobs": {
+                    "kind": "more-by",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "«меньше на» до 10",
+                  "knobs": {
+                    "kind": "less-by",
+                    "max": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-difference",
+      "title": "На сколько больше / меньше",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "word-difference",
+          "title": "На сколько больше, на сколько меньше",
+          "formats": [
+            {
+              "plugin": "difference",
+              "title": "пары предметов на картинке",
+              "sections": [
+                {
+                  "title": "до 5",
+                  "knobs": {
+                    "show": "picture",
+                    "max": 5
+                  }
+                },
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "show": "picture",
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "difference",
+              "title": "голые числа «на сколько 9 больше 5?»",
+              "sections": [
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "show": "number",
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "текстовая задача",
+              "sections": [
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "kind": "difference",
+                    "max": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unknown-addend",
+      "title": "Неизвестное слагаемое",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "unknown-addend",
+          "title": "Найди неизвестное",
+          "formats": [
+            {
+              "plugin": "missing",
+              "title": "□ + 2 = 5",
+              "sections": [
+                {
+                  "title": "второе слагаемое",
+                  "knobs": {
+                    "blank": "second",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "первое слагаемое",
+                  "knobs": {
+                    "blank": "first",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "вычитаемое",
+                  "knobs": {
+                    "blank": "subtrahend",
+                    "max": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mass-volume",
+      "title": "Килограмм и литр",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "mass-volume",
+          "title": "Сколько килограммов, сколько литров",
+          "formats": [
+            {
+              "plugin": "measure",
+              "title": "сколько на весах?",
+              "sections": [
+                {
+                  "title": "гири по 1 кг",
+                  "knobs": {
+                    "quantity": "mass",
+                    "weights": "ones"
+                  }
+                },
+                {
+                  "title": "разные гири",
+                  "knobs": {
+                    "quantity": "mass",
+                    "weights": "mixed"
+                  }
+                },
+                {
+                  "title": "уравновесить",
+                  "source": "петерсон",
+                  "knobs": {
+                    "quantity": "mass",
+                    "weights": "mixed",
+                    "balance": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "measure",
+              "title": "сколько литров?",
+              "sections": [
+                {
+                  "title": "одинаковые банки",
+                  "knobs": {
+                    "quantity": "volume",
+                    "jars": "same"
+                  }
+                },
+                {
+                  "title": "разные банки",
+                  "knobs": {
+                    "quantity": "volume",
+                    "jars": "mixed"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers-20",
+      "title": "Числа 11–20",
+      "grade": 1,
+      "needs": ["add-sub-10"],
+      "steps": [
+        {
+          "id": "numbers-20",
+          "title": "Числа 11–20: десяток и единицы, сравнение, дециметр",
+          "formats": [
+            {
+              "plugin": "bonds",
+              "title": "десяток и единицы",
+              "sections": [
+                {
+                  "title": "13 = 10 + □",
+                  "knobs": {
+                    "form": "tens",
+                    "min": 11,
+                    "max": 19
+                  }
+                },
+                {
+                  "title": "10 + 7",
+                  "knobs": {
+                    "form": "ten-plus",
+                    "min": 11,
+                    "max": 19
+                  }
+                },
+                {
+                  "title": "17 − 7",
+                  "knobs": {
+                    "form": "minus-ones",
+                    "min": 11,
+                    "max": 19
+                  }
+                },
+                {
+                  "title": "17 − 10",
+                  "knobs": {
+                    "form": "minus-ten",
+                    "min": 11,
+                    "max": 19
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "comparing",
+              "title": "что больше?",
+              "sections": [
+                {
+                  "title": "далёкие",
+                  "knobs": {
+                    "min": 11,
+                    "max": 20,
+                    "distance": "far"
+                  }
+                },
+                {
+                  "title": "соседние",
+                  "knobs": {
+                    "min": 11,
+                    "max": 20,
+                    "distance": "near"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "number-line",
+              "title": "числовая прямая",
+              "sections": [
+                {
+                  "title": "подписано каждое число",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 0,
+                    "max": 20,
+                    "labels": "all"
+                  }
+                },
+                {
+                  "title": "каждое второе",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 0,
+                    "max": 20,
+                    "labels": "every-2"
+                  }
+                },
+                {
+                  "title": "только концы",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 10,
+                    "max": 20,
+                    "labels": "ends"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "2 дм = □ см",
+                  "knobs": {
+                    "pair": "dm-cm",
+                    "form": "whole",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "1 дм 3 см = □ см",
+                  "knobs": {
+                    "pair": "dm-cm",
+                    "form": "compound",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "13 см = 1 дм □ см",
+                  "knobs": {
+                    "pair": "dm-cm",
+                    "form": "split",
+                    "max": 20
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "ruler",
+              "title": "измерь линейкой",
+              "sections": [
+                {
+                  "title": "до 20 см, от нуля",
+                  "knobs": {
+                    "min": 11,
+                    "max": 20,
+                    "from": "zero"
+                  }
+                },
+                {
+                  "title": "не от нуля",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 11,
+                    "max": 20,
+                    "from": "any"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-2step",
+      "title": "Задачи в два действия",
+      "grade": 1,
+      "needs": ["word-1step", "numbers-20"],
+      "steps": [
+        {
+          "id": "word-2step",
+          "title": "Задача в два действия",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "текстовая задача",
+              "sections": [
+                {
+                  "title": "«дали, потом отдал»",
+                  "knobs": {
+                    "kind": "sum-take",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "«отдал, потом дали»",
+                  "knobs": {
+                    "kind": "take-sum",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "«на … больше» и вместе",
+                  "knobs": {
+                    "kind": "more-by-sum",
+                    "max": 10
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "выбери план решения",
+              "sections": [
+                {
+                  "title": "«дали, потом отдал»",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "sum-take",
+                    "max": 10,
+                    "ask": "plan"
+                  }
+                },
+                {
+                  "title": "«отдал, потом дали»",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "take-sum",
+                    "max": 10,
+                    "ask": "plan"
+                  }
+                },
+                {
+                  "title": "«на … больше» и вместе",
+                  "source": "петерсон",
+                  "knobs": {
+                    "kind": "more-by-sum",
+                    "max": 10,
+                    "ask": "plan"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-sub-cross-10",
+      "title": "Сложение и вычитание с переходом через десяток",
+      "grade": 1,
+      "needs": ["numbers-20", "bonds-10"],
+      "steps": [
+        {
+          "id": "add-sub-cross-10",
+          "title": "Переход через десяток, до 20",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "sections": [
+                {
+                  "title": "□ + 2",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 2
+                  }
+                },
+                {
+                  "title": "□ + 3",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 3
+                  }
+                },
+                {
+                  "title": "□ + 4",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 4
+                  }
+                },
+                {
+                  "title": "□ + 5",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 5
+                  }
+                },
+                {
+                  "title": "□ + 6",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 6
+                  }
+                },
+                {
+                  "title": "□ + 7",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 7
+                  }
+                },
+                {
+                  "title": "□ + 8",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 8
+                  }
+                },
+                {
+                  "title": "□ + 9",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "cross-ten",
+                    "second": 9
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "sections": [
+                {
+                  "title": "11 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 11
+                  }
+                },
+                {
+                  "title": "12 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 12
+                  }
+                },
+                {
+                  "title": "13 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 13
+                  }
+                },
+                {
+                  "title": "14 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 14
+                  }
+                },
+                {
+                  "title": "15 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 15
+                  }
+                },
+                {
+                  "title": "16 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 16
+                  }
+                },
+                {
+                  "title": "17 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 17
+                  }
+                },
+                {
+                  "title": "18 − □",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "cross-ten",
+                    "minuend": 18
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers-100",
+      "title": "Числа до 100",
+      "grade": 2,
+      "needs": ["numbers-20"],
+      "steps": [
+        {
+          "id": "numbers-100",
+          "title": "Числа до 100: десятки и единицы, сравнение",
+          "formats": [
+            {
+              "plugin": "bonds",
+              "title": "десятки и единицы",
+              "sections": [
+                {
+                  "title": "40 = □ дес.",
+                  "knobs": {
+                    "form": "count-tens",
+                    "min": 10,
+                    "max": 90
+                  }
+                },
+                {
+                  "title": "47 = 40 + □",
+                  "knobs": {
+                    "form": "expand",
+                    "min": 21,
+                    "max": 99
+                  }
+                },
+                {
+                  "title": "35 − 30, 35 − 5",
+                  "knobs": {
+                    "form": "drop",
+                    "min": 21,
+                    "max": 99
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "comparing",
+              "title": "что больше?",
+              "sections": [
+                {
+                  "title": "разные десятки 34 □ 52",
+                  "knobs": {
+                    "min": 21,
+                    "max": 99,
+                    "distance": "other-lead"
+                  }
+                },
+                {
+                  "title": "одинаковые десятки 34 □ 37",
+                  "knobs": {
+                    "min": 21,
+                    "max": 99,
+                    "distance": "same-lead"
+                  }
+                },
+                {
+                  "title": "ловушка единиц 29 □ 31",
+                  "knobs": {
+                    "min": 21,
+                    "max": 99,
+                    "distance": "trap"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "number-line",
+              "title": "числовая прямая",
+              "sections": [
+                {
+                  "title": "деления через 10",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 0,
+                    "max": 100,
+                    "step": 10,
+                    "labels": "every-2"
+                  }
+                },
+                {
+                  "title": "подписаны десятки",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 40,
+                    "max": 60,
+                    "labels": "tens"
+                  }
+                },
+                {
+                  "title": "только концы",
+                  "source": "петерсон",
+                  "knobs": {
+                    "min": 30,
+                    "max": 50,
+                    "labels": "ends"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "length-mm-m",
+      "title": "Длина: миллиметр и метр",
+      "grade": 2,
+      "needs": ["length-cm", "numbers-100"],
+      "steps": [
+        {
+          "id": "length-mm-m",
+          "title": "Миллиметр и метр",
+          "formats": [
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 м = □ дм",
+                  "knobs": {
+                    "pair": "m-dm",
+                    "form": "whole",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "1 м = □ см",
+                  "knobs": {
+                    "pair": "m-cm",
+                    "form": "whole",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "1 см = □ мм",
+                  "knobs": {
+                    "pair": "cm-mm",
+                    "form": "whole",
+                    "max": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "units",
+              "title": "сравни величины",
+              "sections": [
+                {
+                  "title": "1 м □ 12 дм",
+                  "knobs": {
+                    "pair": "m-dm",
+                    "form": "compare-whole",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "1 м 3 дм □ 15 дм",
+                  "knobs": {
+                    "pair": "m-dm",
+                    "form": "compare",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "money",
+      "title": "Деньги",
+      "grade": 2,
+      "needs": ["numbers-100"],
+      "steps": [
+        {
+          "id": "money",
+          "title": "Рубль и копейка",
+          "formats": [
+            {
+              "plugin": "money",
+              "title": "сколько денег?",
+              "sections": [
+                {
+                  "title": "монеты до 10 р.",
+                  "knobs": {
+                    "ask": "count",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "монеты и купюры до 100 р.",
+                  "knobs": {
+                    "ask": "count",
+                    "max": 100,
+                    "notes": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "money",
+              "title": "сдача",
+              "sections": [
+                {
+                  "title": "с 10 р.",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "change",
+                    "from": 10
+                  }
+                },
+                {
+                  "title": "со 100 р.",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "change",
+                    "from": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 р. = □ к.",
+                  "knobs": {
+                    "pair": "rub-kop",
+                    "form": "whole",
+                    "max": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "money",
+              "title": "набери сумму",
+              "sections": [
+                {
+                  "title": "до 10 р.",
+                  "knobs": {
+                    "ask": "make",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "до 100 р.",
+                  "knobs": {
+                    "ask": "make",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round-tens",
+      "title": "Круглые десятки",
+      "grade": 2,
+      "needs": ["numbers-100", "add-sub-cross-10"],
+      "steps": [
+        {
+          "id": "round-tens",
+          "title": "Круглые десятки до 100",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "knobs": {
+                "operation": "+",
+                "kind": "round-tens"
+              }
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "knobs": {
+                "operation": "-",
+                "kind": "round-tens"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time-clock",
+      "title": "Часы и минуты",
+      "grade": 2,
+      "needs": ["numbers-100"],
+      "steps": [
+        {
+          "id": "time-clock",
+          "title": "Часы и минуты",
+          "formats": [
+            {
+              "plugin": "clock",
+              "title": "который час?",
+              "sections": [
+                {
+                  "title": "целые часы",
+                  "knobs": {
+                    "step": "hour"
+                  }
+                },
+                {
+                  "title": "половины",
+                  "knobs": {
+                    "step": "half"
+                  }
+                },
+                {
+                  "title": "четверти",
+                  "knobs": {
+                    "step": "quarter"
+                  }
+                },
+                {
+                  "title": "по 5 минут",
+                  "knobs": {
+                    "step": "five"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 ч = □ мин",
+                  "knobs": {
+                    "pair": "h-min",
+                    "form": "whole",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "1 ч 20 мин = □ мин",
+                  "knobs": {
+                    "pair": "h-min",
+                    "form": "compound",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "order-of-operations",
+      "title": "Порядок действий и скобки",
+      "grade": 2,
+      "needs": ["add-sub-cross-10"],
+      "steps": [
+        {
+          "id": "order-of-operations",
+          "title": "Порядок действий и скобки",
+          "formats": [
+            {
+              "plugin": "chain",
+              "title": "вычисли",
+              "sections": [
+                {
+                  "title": "три числа слева направо до 20",
+                  "knobs": {
+                    "ask": "value",
+                    "terms": 3,
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "со скобками до 20",
+                  "knobs": {
+                    "ask": "value",
+                    "terms": 3,
+                    "max": 20,
+                    "brackets": true
+                  }
+                },
+                {
+                  "title": "со скобками до 100",
+                  "knobs": {
+                    "ask": "value",
+                    "terms": 3,
+                    "max": 100,
+                    "brackets": true
+                  }
+                },
+                {
+                  "title": "удобная группировка 27 + 15 + 3",
+                  "knobs": {
+                    "ask": "value",
+                    "terms": 3,
+                    "max": 100,
+                    "convenient": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "chain",
+              "title": "где скобки?",
+              "sections": [
+                {
+                  "title": "три числа",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "brackets",
+                    "terms": 3,
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "четыре числа",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "brackets",
+                    "terms": 4,
+                    "max": 20
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compare-expressions",
+      "title": "Сравнение выражений",
+      "grade": 2,
+      "needs": ["add-sub-cross-10"],
+      "steps": [
+        {
+          "id": "compare-expressions",
+          "title": "Сравнение выражений",
+          "formats": [
+            {
+              "plugin": "expressions",
+              "title": "что больше?",
+              "sections": [
+                {
+                  "title": "число и выражение до 20",
+                  "knobs": {
+                    "sides": "number-expression",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "два выражения до 20",
+                  "knobs": {
+                    "sides": "expressions",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "два выражения до 100",
+                  "knobs": {
+                    "sides": "expressions",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "не вычисляя 47 + 28 □ 47 + 25",
+                  "source": "петерсон",
+                  "knobs": {
+                    "sides": "same-term",
+                    "max": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "difference",
+              "title": "на сколько больше?",
+              "sections": [
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "show": "number",
+                    "min": 11,
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "до 100",
+                  "knobs": {
+                    "show": "number",
+                    "min": 21,
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perimeter",
+      "title": "Длина ломаной и периметр",
+      "grade": 2,
+      "needs": ["length-mm-m", "shapes"],
+      "steps": [
+        {
+          "id": "perimeter",
+          "title": "Длина ломаной и периметр",
+          "formats": [
+            {
+              "plugin": "perimeter",
+              "title": "по рисунку",
+              "sections": [
+                {
+                  "title": "ломаная из 3 звеньев",
+                  "knobs": {
+                    "figure": "broken-line",
+                    "max": 30
+                  }
+                },
+                {
+                  "title": "треугольник",
+                  "knobs": {
+                    "figure": "triangle",
+                    "max": 30
+                  }
+                },
+                {
+                  "title": "четырёхугольник по сторонам",
+                  "knobs": {
+                    "figure": "quadrilateral",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-sub-2digit",
+      "title": "Двузначные без перехода",
+      "grade": 2,
+      "needs": ["round-tens"],
+      "steps": [
+        {
+          "id": "add-sub-2digit",
+          "title": "Двузначные, поразрядно",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "sections": [
+                {
+                  "title": "36 + 2",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "two-digit-ones"
+                  }
+                },
+                {
+                  "title": "36 + 20",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "two-digit-tens"
+                  }
+                },
+                {
+                  "title": "45 + 23",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "two-digit"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "sections": [
+                {
+                  "title": "36 − 2",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "two-digit-ones"
+                  }
+                },
+                {
+                  "title": "36 − 20",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "two-digit-tens"
+                  }
+                },
+                {
+                  "title": "68 − 14",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "two-digit"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-sub-2digit-carry",
+      "title": "Двузначные с переходом",
+      "grade": 2,
+      "needs": ["add-sub-2digit", "add-sub-cross-10"],
+      "steps": [
+        {
+          "id": "add-sub-2digit-carry",
+          "title": "Двузначные с переходом через разряд",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "sections": [
+                {
+                  "title": "26 + 4",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "to-round"
+                  }
+                },
+                {
+                  "title": "26 + 7",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "ones-carry"
+                  }
+                },
+                {
+                  "title": "47 + 28",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "two-digit-carry"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "sections": [
+                {
+                  "title": "30 − 7",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "to-round"
+                  }
+                },
+                {
+                  "title": "35 − 7",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "ones-carry"
+                  }
+                },
+                {
+                  "title": "63 − 27",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "two-digit-carry"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "equations",
+      "title": "Уравнения",
+      "grade": 2,
+      "needs": ["unknown-addend", "add-sub-2digit-carry"],
+      "steps": [
+        {
+          "id": "equations",
+          "title": "Уравнения",
+          "formats": [
+            {
+              "plugin": "missing",
+              "title": "неизвестное вычитаемое",
+              "sections": [
+                {
+                  "title": "7 − □ = 3 до 20",
+                  "knobs": {
+                    "blank": "subtrahend",
+                    "min": 11,
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "40 − x = 25",
+                  "knobs": {
+                    "blank": "subtrahend",
+                    "min": 21,
+                    "max": 100,
+                    "letter": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "missing",
+              "title": "неизвестное уменьшаемое",
+              "sections": [
+                {
+                  "title": "□ − 3 = 4 до 20",
+                  "knobs": {
+                    "blank": "minuend",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "x − 12 = 30",
+                  "knobs": {
+                    "blank": "minuend",
+                    "min": 21,
+                    "max": 100,
+                    "letter": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "missing",
+              "title": "неизвестное слагаемое с буквой",
+              "sections": [
+                {
+                  "title": "x + 15 = 40",
+                  "knobs": {
+                    "blank": "first",
+                    "min": 21,
+                    "max": 100,
+                    "letter": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-100",
+      "title": "Задачи до 100",
+      "grade": 2,
+      "needs": ["word-2step", "add-sub-2digit-carry"],
+      "steps": [
+        {
+          "id": "word-100",
+          "title": "Задачи до 100",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "текстовая задача",
+              "sections": [
+                {
+                  "title": "в одно действие",
+                  "knobs": {
+                    "kind": "sum",
+                    "min": 21,
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "остаток",
+                  "knobs": {
+                    "kind": "take",
+                    "min": 21,
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "«на … больше / меньше»",
+                  "knobs": {
+                    "kind": "more-by",
+                    "min": 21,
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "«на сколько больше?»",
+                  "knobs": {
+                    "kind": "difference",
+                    "min": 21,
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "в два действия",
+                  "knobs": {
+                    "kind": "sum-take",
+                    "min": 21,
+                    "max": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "картинка-история, текст читает учитель",
+              "sections": [
+                {
+                  "title": "в одно действие",
+                  "knobs": {
+                    "kind": "sum",
+                    "min": 11,
+                    "max": 20,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "остаток",
+                  "knobs": {
+                    "kind": "take",
+                    "min": 11,
+                    "max": 20,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "«на … больше»",
+                  "knobs": {
+                    "kind": "more-by",
+                    "min": 11,
+                    "max": 20,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "«на сколько больше?»",
+                  "knobs": {
+                    "kind": "difference",
+                    "min": 11,
+                    "max": 20,
+                    "picture": true
+                  }
+                },
+                {
+                  "title": "в два действия",
+                  "knobs": {
+                    "kind": "sum-take",
+                    "min": 11,
+                    "max": 20,
+                    "picture": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "right-angle",
+      "title": "Прямой угол, прямоугольник, квадрат",
+      "grade": 2,
+      "needs": ["shapes", "perimeter"],
+      "steps": [
+        {
+          "id": "right-angle",
+          "title": "Прямой угол, прямоугольник, квадрат",
+          "formats": [
+            {
+              "plugin": "angles",
+              "title": "где прямой угол?",
+              "sections": [
+                {
+                  "title": "один угол: прямой?",
+                  "knobs": {
+                    "ask": "is-right"
+                  }
+                },
+                {
+                  "title": "среди острых и тупых",
+                  "knobs": {
+                    "ask": "which"
+                  }
+                },
+                {
+                  "title": "похожие углы",
+                  "source": "петерсон",
+                  "knobs": {
+                    "ask": "which",
+                    "near": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "shapes",
+              "title": "это прямоугольник? квадрат?",
+              "sections": [
+                {
+                  "title": "явные",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "quads"
+                  }
+                },
+                {
+                  "title": "повёрнутые и похожие",
+                  "knobs": {
+                    "ask": "name",
+                    "set": "quads",
+                    "rotated": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "perimeter",
+              "title": "периметр прямоугольника и квадрата",
+              "sections": [
+                {
+                  "title": "прямоугольник по двум сторонам",
+                  "knobs": {
+                    "figure": "rectangle",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "квадрат по одной стороне",
+                  "knobs": {
+                    "figure": "square",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mult-meaning",
+      "title": "Смысл умножения",
+      "grade": 2,
+      "needs": ["add-sub-cross-10"],
+      "steps": [
+        {
+          "id": "mult-meaning",
+          "title": "Смысл умножения",
+          "formats": [
+            {
+              "plugin": "groups",
+              "title": "сумма одинаковых 3 + 3 + 3 = □",
+              "sections": [
+                {
+                  "title": "2–3 слагаемых по 2–5",
+                  "knobs": {
+                    "ask": "sum",
+                    "minTerms": 2,
+                    "maxTerms": 3,
+                    "maxSize": 5
+                  }
+                },
+                {
+                  "title": "4–5 слагаемых",
+                  "knobs": {
+                    "ask": "sum",
+                    "minTerms": 4,
+                    "maxTerms": 5,
+                    "maxSize": 5
+                  }
+                },
+                {
+                  "title": "слагаемые до 9",
+                  "knobs": {
+                    "ask": "sum",
+                    "minTerms": 2,
+                    "maxTerms": 5,
+                    "maxSize": 9
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "groups",
+              "title": "сумма → произведение 3 + 3 + 3 = 3 × □",
+              "sections": [
+                {
+                  "title": "2–3 слагаемых по 2–5",
+                  "knobs": {
+                    "ask": "product",
+                    "minTerms": 2,
+                    "maxTerms": 3,
+                    "maxSize": 5
+                  }
+                },
+                {
+                  "title": "4–5 слагаемых",
+                  "knobs": {
+                    "ask": "product",
+                    "minTerms": 4,
+                    "maxTerms": 5,
+                    "maxSize": 5
+                  }
+                },
+                {
+                  "title": "слагаемые до 9",
+                  "knobs": {
+                    "ask": "product",
+                    "minTerms": 2,
+                    "maxTerms": 5,
+                    "maxSize": 9
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "groups",
+              "title": "группы на картинке",
+              "sections": [
+                {
+                  "title": "маленькие группы",
+                  "knobs": {
+                    "ask": "plates",
+                    "maxGroups": 3,
+                    "maxSize": 3
+                  }
+                },
+                {
+                  "title": "большие",
+                  "knobs": {
+                    "ask": "plates",
+                    "maxGroups": 6,
+                    "maxSize": 6
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "groups",
+              "title": "ряды «3 ряда по 5»",
+              "sections": [
+                {
+                  "title": "до 3 рядов",
+                  "knobs": {
+                    "ask": "array",
+                    "maxRows": 3,
+                    "maxColumns": 5
+                  }
+                },
+                {
+                  "title": "до 6 рядов",
+                  "knobs": {
+                    "ask": "array",
+                    "maxRows": 6,
+                    "maxColumns": 6
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "groups",
+              "title": "3 × 4 и 4 × 3",
+              "sections": [
+                {
+                  "title": "маленькие числа",
+                  "knobs": {
+                    "ask": "commutative",
+                    "maxFactor": 5
+                  }
+                },
+                {
+                  "title": "большие",
+                  "knobs": {
+                    "ask": "commutative",
+                    "maxFactor": 9
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "div-meaning",
+      "title": "Смысл деления",
+      "grade": 2,
+      "needs": ["mult-meaning"],
+      "steps": [
+        {
+          "id": "div-meaning",
+          "title": "Смысл деления",
+          "formats": [
+            {
+              "plugin": "groups",
+              "title": "поровну по картинке",
+              "sections": [
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "ask": "share",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "ask": "share",
+                    "max": 20
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "groups",
+              "title": "по содержанию",
+              "sections": [
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "ask": "measure-out",
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "ask": "measure-out",
+                    "max": 20
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "missing",
+              "title": "неизвестный множитель 3 × □ = 12",
+              "sections": [
+                {
+                  "title": "на 2",
+                  "knobs": {
+                    "blank": "factor",
+                    "max": 20,
+                    "by": 2
+                  }
+                },
+                {
+                  "title": "на 3",
+                  "knobs": {
+                    "blank": "factor",
+                    "max": 30,
+                    "by": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-mult-div",
+      "title": "Задачи на × и ÷",
+      "grade": 2,
+      "needs": ["div-meaning"],
+      "steps": [
+        {
+          "id": "word-mult-div",
+          "title": "Задачи на умножение и деление",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "смысл умножения и деления",
+              "sections": [
+                {
+                  "title": "«по 3 на 4 тарелках»",
+                  "knobs": {
+                    "kind": "mult",
+                    "max": 30
+                  }
+                },
+                {
+                  "title": "«12 поровну на 3»",
+                  "knobs": {
+                    "kind": "share",
+                    "max": 30
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "цена, количество, стоимость",
+              "sections": [
+                {
+                  "title": "найти стоимость",
+                  "knobs": {
+                    "kind": "cost",
+                    "max": 30
+                  }
+                },
+                {
+                  "title": "найти цену",
+                  "knobs": {
+                    "kind": "price",
+                    "max": 30
+                  }
+                },
+                {
+                  "title": "найти количество",
+                  "knobs": {
+                    "kind": "quantity",
+                    "max": 30
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "times-2-3",
+      "title": "Таблица на 2 и 3",
+      "grade": 2,
+      "needs": ["mult-meaning", "div-meaning"],
+      "steps": [
+        {
+          "id": "times-2-3",
+          "title": "Таблица на 2 и 3",
+          "formats": [
+            {
+              "plugin": "times",
+              "title": "умножение",
+              "sections": [
+                {
+                  "title": "× 2",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 2
+                  }
+                },
+                {
+                  "title": "× 3",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 3
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "деление",
+              "sections": [
+                {
+                  "title": ": 2",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 2
+                  }
+                },
+                {
+                  "title": ": 3",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 3
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "серия «прыжками» 2, 4, 6, □",
+              "sections": [
+                {
+                  "title": "по 2",
+                  "source": "tfm",
+                  "knobs": {
+                    "kind": "skip",
+                    "by": 2
+                  }
+                },
+                {
+                  "title": "по 3",
+                  "source": "tfm",
+                  "knobs": {
+                    "kind": "skip",
+                    "by": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "times-4-5",
+      "title": "Таблица на 4 и 5",
+      "grade": 3,
+      "needs": ["times-2-3"],
+      "steps": [
+        {
+          "id": "times-4-5",
+          "title": "Таблица на 4 и 5",
+          "formats": [
+            {
+              "plugin": "times",
+              "title": "умножение",
+              "sections": [
+                {
+                  "title": "× 4",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 4
+                  }
+                },
+                {
+                  "title": "× 5",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 5
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "деление",
+              "sections": [
+                {
+                  "title": ": 4",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 4
+                  }
+                },
+                {
+                  "title": ": 5",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "times-6-9",
+      "title": "Таблица на 6–9",
+      "grade": 3,
+      "needs": ["times-4-5"],
+      "steps": [
+        {
+          "id": "times-6-9",
+          "title": "Таблица на 6–9",
+          "formats": [
+            {
+              "plugin": "times",
+              "title": "умножение",
+              "sections": [
+                {
+                  "title": "× 6",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 6
+                  }
+                },
+                {
+                  "title": "× 7",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 7
+                  }
+                },
+                {
+                  "title": "× 8",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 8
+                  }
+                },
+                {
+                  "title": "× 9",
+                  "knobs": {
+                    "kind": "table-mul",
+                    "by": 9
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "деление",
+              "sections": [
+                {
+                  "title": ": 6",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 6
+                  }
+                },
+                {
+                  "title": ": 7",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 7
+                  }
+                },
+                {
+                  "title": ": 8",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 8
+                  }
+                },
+                {
+                  "title": ": 9",
+                  "knobs": {
+                    "kind": "table-div",
+                    "by": 9
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "area",
+      "title": "Площадь",
+      "grade": 3,
+      "needs": ["right-angle", "times-4-5"],
+      "steps": [
+        {
+          "id": "area",
+          "title": "Площадь",
+          "formats": [
+            {
+              "plugin": "area",
+              "title": "какая фигура больше?",
+              "sections": [
+                {
+                  "title": "явно разные",
+                  "knobs": {
+                    "ask": "compare"
+                  }
+                },
+                {
+                  "title": "близкие",
+                  "knobs": {
+                    "ask": "compare",
+                    "near": true
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "area",
+              "title": "площадь в клетках",
+              "sections": [
+                {
+                  "title": "прямоугольник",
+                  "knobs": {
+                    "ask": "cells",
+                    "shape": "rectangle"
+                  }
+                },
+                {
+                  "title": "сложная фигура",
+                  "knobs": {
+                    "ask": "cells",
+                    "shape": "composite"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "area",
+              "title": "площадь прямоугольника",
+              "sections": [
+                {
+                  "title": "стороны 2–3",
+                  "knobs": {
+                    "ask": "sides",
+                    "max": 3
+                  }
+                },
+                {
+                  "title": "стороны 2–5",
+                  "knobs": {
+                    "ask": "sides",
+                    "max": 5
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 дм² = □ см²",
+                  "knobs": {
+                    "pair": "dm2-cm2",
+                    "form": "whole",
+                    "max": 300
+                  }
+                },
+                {
+                  "title": "1 м² = □ дм²",
+                  "knobs": {
+                    "pair": "m2-dm2",
+                    "form": "whole",
+                    "max": 300
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mult-div-0-1-10",
+      "title": "× и ÷ на 0, 1, 10",
+      "grade": 3,
+      "needs": ["times-6-9"],
+      "steps": [
+        {
+          "id": "mult-div-0-1-10",
+          "title": "Умножение и деление на 0, 1, 10",
+          "formats": [
+            {
+              "plugin": "times",
+              "title": "умножение",
+              "sections": [
+                {
+                  "title": "× 1",
+                  "knobs": {
+                    "kind": "by-1"
+                  }
+                },
+                {
+                  "title": "× 0",
+                  "knobs": {
+                    "kind": "by-0"
+                  }
+                },
+                {
+                  "title": "× 10",
+                  "knobs": {
+                    "kind": "by-10"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "деление",
+              "sections": [
+                {
+                  "title": ": 1",
+                  "knobs": {
+                    "kind": "div-1"
+                  }
+                },
+                {
+                  "title": "a : a",
+                  "knobs": {
+                    "kind": "self"
+                  }
+                },
+                {
+                  "title": "0 : a",
+                  "knobs": {
+                    "kind": "zero-div"
+                  }
+                },
+                {
+                  "title": ": 10",
+                  "knobs": {
+                    "kind": "div-10"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-times-compare",
+      "title": "В n раз, во сколько раз",
+      "grade": 3,
+      "needs": ["word-mult-div", "times-6-9"],
+      "steps": [
+        {
+          "id": "word-times-compare",
+          "title": "В n раз, во сколько раз",
+          "formats": [
+            {
+              "plugin": "word",
+              "title": "голое «увеличь 6 в 3 раза»",
+              "sections": [
+                {
+                  "title": "увеличить",
+                  "knobs": {
+                    "kind": "times-increase",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "уменьшить",
+                  "knobs": {
+                    "kind": "times-decrease",
+                    "max": 100
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "word",
+              "title": "текстовая",
+              "sections": [
+                {
+                  "title": "«в n раз больше»",
+                  "knobs": {
+                    "kind": "times-more",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "«в n раз меньше»",
+                  "knobs": {
+                    "kind": "times-less",
+                    "max": 100
+                  }
+                },
+                {
+                  "title": "«во сколько раз больше?»",
+                  "knobs": {
+                    "kind": "times-ratio",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time-calendar",
+      "title": "Сутки, месяц, год",
+      "grade": 3,
+      "needs": ["time-clock"],
+      "steps": [
+        {
+          "id": "time-calendar",
+          "title": "Сутки, месяц, год",
+          "formats": [
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 сут. = □ ч",
+                  "knobs": {
+                    "pair": "day-h",
+                    "form": "whole",
+                    "max": 72
+                  }
+                },
+                {
+                  "title": "1 г. = □ мес.",
+                  "knobs": {
+                    "pair": "year-month",
+                    "form": "whole",
+                    "max": 36
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "calendar",
+              "title": "дни недели",
+              "sections": [
+                {
+                  "title": "через несколько дней",
+                  "knobs": {
+                    "ask": "weekday"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "calendar",
+              "title": "дни в месяце",
+              "sections": [
+                {
+                  "title": "сколько дней в месяце",
+                  "knobs": {
+                    "ask": "month-days"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mult-div-beyond-table",
+      "title": "Внетабличное умножение и деление",
+      "grade": 3,
+      "needs": ["times-6-9", "add-sub-2digit-carry"],
+      "steps": [
+        {
+          "id": "mult-div-beyond-table",
+          "title": "Внетабличное умножение и деление",
+          "formats": [
+            {
+              "plugin": "times",
+              "title": "умножение",
+              "sections": [
+                {
+                  "title": "круглые 20 × 3",
+                  "knobs": {
+                    "kind": "round-mul"
+                  }
+                },
+                {
+                  "title": "двузначное 23 × 4",
+                  "knobs": {
+                    "kind": "two-digit-mul"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "деление",
+              "sections": [
+                {
+                  "title": "круглые 60 : 3",
+                  "knobs": {
+                    "kind": "round-div"
+                  }
+                },
+                {
+                  "title": "80 : 20",
+                  "knobs": {
+                    "kind": "round-by-round"
+                  }
+                },
+                {
+                  "title": "деление суммы 78 : 2",
+                  "knobs": {
+                    "kind": "sum-div"
+                  }
+                },
+                {
+                  "title": "подбором 87 : 29",
+                  "knobs": {
+                    "kind": "guess-div"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "div-remainder",
+      "title": "Деление с остатком",
+      "grade": 3,
+      "needs": ["times-6-9"],
+      "steps": [
+        {
+          "id": "div-remainder",
+          "title": "Деление с остатком",
+          "formats": [
+            {
+              "plugin": "remainder",
+              "title": "по картинке «17 конфет по 5»",
+              "sections": [
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "show": "picture",
+                    "max": 20
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "remainder",
+              "title": "пример 17 : 5",
+              "sections": [
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "show": "number",
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "до 50",
+                  "knobs": {
+                    "show": "number",
+                    "max": 50
+                  }
+                },
+                {
+                  "title": "до 100",
+                  "knobs": {
+                    "show": "number",
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers-1000",
+      "title": "Числа до 1000",
+      "grade": 3,
+      "needs": ["numbers-100", "mult-div-0-1-10"],
+      "steps": [
+        {
+          "id": "numbers-1000",
+          "title": "Числа до 1000",
+          "formats": [
+            {
+              "plugin": "bonds",
+              "title": "разряды",
+              "sections": [
+                {
+                  "title": "300 = □ сот.",
+                  "knobs": {
+                    "form": "count-hundreds",
+                    "min": 100,
+                    "max": 900
+                  }
+                },
+                {
+                  "title": "347 = 300 + 40 + □",
+                  "knobs": {
+                    "form": "expand",
+                    "min": 101,
+                    "max": 999
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "comparing",
+              "title": "что больше?",
+              "sections": [
+                {
+                  "title": "разные сотни",
+                  "knobs": {
+                    "min": 100,
+                    "max": 999,
+                    "distance": "other-lead"
+                  }
+                },
+                {
+                  "title": "одинаковые сотни",
+                  "knobs": {
+                    "min": 100,
+                    "max": 999,
+                    "distance": "same-lead"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "times",
+              "title": "× 10, × 100",
+              "sections": [
+                {
+                  "title": "× 10",
+                  "knobs": {
+                    "kind": "times-10-100",
+                    "by": 10
+                  }
+                },
+                {
+                  "title": "× 100",
+                  "knobs": {
+                    "kind": "times-10-100",
+                    "by": 100
+                  }
+                },
+                {
+                  "title": ": 10",
+                  "knobs": {
+                    "kind": "div-by-10"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "roman",
+              "title": "римские цифры",
+              "sections": [
+                {
+                  "title": "до 10",
+                  "knobs": {
+                    "max": 10
+                  }
+                },
+                {
+                  "title": "до 20",
+                  "knobs": {
+                    "max": 20
+                  }
+                },
+                {
+                  "title": "до 40",
+                  "knobs": {
+                    "max": 40
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mass-grams",
+      "title": "Грамм",
+      "grade": 3,
+      "needs": ["numbers-1000", "mass-volume"],
+      "steps": [
+        {
+          "id": "mass-grams",
+          "title": "Грамм",
+          "formats": [
+            {
+              "plugin": "units",
+              "title": "переведи",
+              "sections": [
+                {
+                  "title": "1 кг = □ г",
+                  "knobs": {
+                    "pair": "kg-g",
+                    "form": "whole",
+                    "max": 5000
+                  }
+                },
+                {
+                  "title": "2 кг 300 г = □ г",
+                  "knobs": {
+                    "pair": "kg-g",
+                    "form": "compound",
+                    "max": 5000
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-sub-1000",
+      "title": "± до 1000",
+      "grade": 3,
+      "needs": ["numbers-1000", "add-sub-2digit-carry"],
+      "steps": [
+        {
+          "id": "add-sub-1000",
+          "title": "Сложение и вычитание до 1000",
+          "formats": [
+            {
+              "plugin": "addition",
+              "title": "сложение",
+              "sections": [
+                {
+                  "title": "300 + 200",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "round-hundreds"
+                  }
+                },
+                {
+                  "title": "450 + 30",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "hundreds-tens"
+                  }
+                },
+                {
+                  "title": "470 + 80",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "tens-carry"
+                  }
+                },
+                {
+                  "title": "260 + 310",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "three-digit-round"
+                  }
+                },
+                {
+                  "title": "любые",
+                  "knobs": {
+                    "operation": "+",
+                    "kind": "three-digit"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "addition",
+              "title": "вычитание",
+              "sections": [
+                {
+                  "title": "500 − 200",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "round-hundreds"
+                  }
+                },
+                {
+                  "title": "480 − 30",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "hundreds-tens"
+                  }
+                },
+                {
+                  "title": "560 − 90",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "tens-carry"
+                  }
+                },
+                {
+                  "title": "670 − 140",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "three-digit-round"
+                  }
+                },
+                {
+                  "title": "любые",
+                  "knobs": {
+                    "operation": "-",
+                    "kind": "three-digit"
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "column",
+              "title": "в столбик",
+              "sections": [
+                {
+                  "title": "сложение без перехода",
+                  "knobs": {
+                    "op": "add",
+                    "carry": false,
+                    "digits": 3
+                  }
+                },
+                {
+                  "title": "вычитание без перехода",
+                  "knobs": {
+                    "op": "sub",
+                    "carry": false,
+                    "digits": 3
+                  }
+                },
+                {
+                  "title": "сложение с переходом",
+                  "knobs": {
+                    "op": "add",
+                    "carry": true,
+                    "digits": 3
+                  }
+                },
+                {
+                  "title": "вычитание с переходом",
+                  "knobs": {
+                    "op": "sub",
+                    "carry": true,
+                    "digits": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
