@@ -1,0 +1,587 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #1d1d1f;
+  background: #fbf8f1;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.step-picker {
+  font-size: 1rem;
+}
+
+.addition-prompt {
+  display: flex;
+  gap: 0.6em;
+  margin: 0;
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 700;
+}
+
+.pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pad-field {
+  min-width: 4ch;
+  padding: 0.25em 0.5em;
+  border: 3px solid #1d1d1f;
+  border-radius: 0.5rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.pad-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 5rem);
+  gap: 0.75rem;
+}
+
+.pad button {
+  min-height: 5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #e8e1d0;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.pad button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pad .pad-submit {
+  width: 100%;
+  background: #3a7d44;
+  color: white;
+}
+
+.verdict {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.verdict.correct {
+  color: #3a7d44;
+}
+
+.verdict.wrong {
+  color: #b5452b;
+}
+
+.next {
+  padding: 1rem 2rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #1d1d1f;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tabs button {
+  padding: 0.4rem 1rem;
+  border: 2px solid #1d1d1f;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.tabs button[aria-selected='true'] {
+  background: #1d1d1f;
+  color: white;
+}
+
+.solve {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.item-key,
+.knobs {
+  margin: 0;
+  color: #77736a;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+
+.grid-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.grid {
+  border-collapse: collapse;
+}
+
+.grid th,
+.grid td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d8d0bd;
+  vertical-align: top;
+  text-align: left;
+}
+
+.grid .example {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.grid .addition-prompt {
+  font-size: 1.25rem;
+}
+
+.grid .answer {
+  color: #3a7d44;
+  font-weight: 700;
+}
+
+.grid .empty {
+  color: #b8b2a3;
+}
+
+.counting-prompt,
+.neighbours-prompt,
+.length-compare-prompt,
+.ruler-prompt,
+.shapes-prompt,
+.measure-prompt,
+.number-line-prompt,
+.difference-prompt,
+.word-prompt,
+.money-prompt,
+.clock-prompt,
+.chain-prompt,
+.perimeter-prompt,
+.angles-prompt,
+.area-prompt,
+.remainder-picture,
+.groups-prompt,
+.roman-prompt,
+.column-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.counting-prompt figcaption,
+.neighbours-prompt figcaption,
+.length-compare-prompt figcaption,
+.ruler-prompt figcaption,
+.shapes-prompt figcaption,
+.measure-prompt figcaption,
+.number-line-prompt figcaption,
+.difference-prompt figcaption,
+.word-prompt figcaption,
+.money-prompt figcaption,
+.clock-prompt figcaption,
+.chain-prompt figcaption,
+.perimeter-prompt figcaption,
+.angles-prompt figcaption,
+.area-prompt figcaption,
+.remainder-picture figcaption,
+.groups-prompt figcaption,
+.roman-prompt figcaption,
+.column-prompt figcaption {
+  font-size: 1.5rem;
+}
+
+.comparing-prompt,
+.neighbours-prompt p,
+.units-prompt,
+.bonds-line,
+.missing-prompt,
+.chain-prompt p,
+.expressions-prompt,
+.times-prompt,
+.remainder-prompt,
+.groups-line,
+.roman-prompt p {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0;
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 700;
+}
+
+.comparing-box,
+.neighbours-blank,
+.units-blank,
+.bonds-blank,
+.missing-blank,
+.chain-blank,
+.expressions-box,
+.times-blank,
+.remainder-blank,
+.groups-blank {
+  color: #b5452b;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.choices button {
+  min-width: 10rem;
+  min-height: 5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #e8e1d0;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.choices button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.grid .counting-prompt figcaption,
+.grid .neighbours-prompt figcaption,
+.grid .length-compare-prompt figcaption,
+.grid .ruler-prompt figcaption,
+.grid .shapes-prompt figcaption,
+.grid .measure-prompt figcaption,
+.grid .number-line-prompt figcaption,
+.grid .difference-prompt figcaption,
+.grid .money-prompt figcaption,
+.grid .clock-prompt figcaption,
+.grid .chain-prompt figcaption,
+.grid .perimeter-prompt figcaption,
+.grid .angles-prompt figcaption,
+.grid .area-prompt figcaption,
+.grid .remainder-picture figcaption,
+.grid .groups-prompt figcaption,
+.grid .roman-prompt figcaption,
+.grid .column-prompt figcaption {
+  display: none;
+}
+
+.grid .counting-prompt svg,
+.grid .length-compare-prompt svg,
+.grid .ruler-prompt svg,
+.grid .shapes-prompt svg,
+.grid .measure-prompt svg,
+.grid .number-line-prompt svg,
+.grid .difference-prompt svg,
+.grid .money-prompt svg,
+.grid .clock-prompt svg,
+.grid .chain-prompt svg,
+.grid .perimeter-prompt svg,
+.grid .angles-prompt svg,
+.grid .area-prompt svg,
+.grid .remainder-picture svg,
+.grid .groups-prompt svg,
+.grid .roman-prompt svg,
+.grid .column-prompt svg {
+  max-width: 120px;
+  height: auto;
+}
+
+.grid .comparing-prompt,
+.grid .neighbours-prompt p,
+.grid .units-prompt,
+.grid .bonds-line,
+.grid .missing-prompt,
+.grid .bonds-house,
+.grid .chain-prompt p,
+.grid .expressions-prompt,
+.grid .times-prompt,
+.grid .remainder-prompt,
+.grid .groups-line,
+.grid .roman-prompt p,
+.grid .column-prompt {
+  font-size: 1.25rem;
+}
+
+.grid .comparing-prompt svg {
+  height: 16px;
+  width: auto;
+}
+
+.comparing-groups {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.units-prompt > span {
+  white-space: nowrap;
+}
+
+.units-prompt small {
+  font-size: 0.6em;
+  font-weight: 400;
+}
+
+.bonds-house {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.bonds-roof {
+  padding: 0.3em 0.8em 0.1em;
+  background: #e8e1d0;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  padding-top: 0.8em;
+}
+
+.bonds-floor {
+  display: flex;
+}
+
+.bonds-floor span {
+  flex: 1;
+  padding: 0.1em 0.5em;
+  border: 3px solid #d8d0bd;
+}
+
+.word-prompt p,
+.difference-question,
+.calendar-prompt {
+  max-width: 36rem;
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.4;
+}
+
+.grid .word-prompt p,
+.grid .difference-question {
+  max-width: 18rem;
+  font-size: 0.95rem;
+}
+
+.grid .word-prompt figcaption {
+  font-size: 0.85rem;
+}
+
+.groups-share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.column-prompt {
+  margin: 0;
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 700;
+}
+
+.grid .groups-line,
+.grid .times-prompt,
+.grid .chain-prompt p,
+.grid .expressions-prompt,
+.grid .remainder-prompt,
+.grid .missing-prompt,
+.grid .bonds-line {
+  white-space: nowrap;
+}
+
+.pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.choices button.picked {
+  background: #3a7d44;
+  color: #fff;
+}
+
+.pick .done {
+  min-width: 12rem;
+  min-height: 4rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #2d6a8a;
+  color: #fff;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.pick .done:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.word-scene {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.grid .word-scene {
+  max-width: 220px;
+}
+
+.addition-picture {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 700;
+}
+
+.addition-words {
+  margin: 0;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+}
+
+.grid .addition-picture,
+.grid .addition-words {
+  font-size: 1rem;
+}
+
+.grid .addition-picture svg {
+  height: 24px;
+  width: auto;
+}
+
+.pattern-prompt,
+.odd-one-out-prompt,
+.facts-prompt,
+.maze-prompt,
+.sudoku-prompt,
+.olympiad-prompt,
+.sort-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.pattern-prompt figcaption,
+.odd-one-out-prompt figcaption,
+.maze-prompt figcaption,
+.sudoku-prompt figcaption,
+.olympiad-prompt figcaption,
+.sort-prompt figcaption {
+  font-size: 1.5rem;
+}
+
+.facts-prompt p {
+  max-width: 36rem;
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.4;
+}
+
+.sequence-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0;
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 700;
+}
+
+.sequence-blank {
+  color: #b5452b;
+}
+
+.grid .pattern-prompt figcaption,
+.grid .odd-one-out-prompt figcaption,
+.grid .maze-prompt figcaption,
+.grid .sudoku-prompt figcaption,
+.grid .olympiad-prompt figcaption,
+.grid .sort-prompt figcaption {
+  display: none;
+}
+
+.grid .pattern-prompt svg,
+.grid .odd-one-out-prompt svg,
+.grid .maze-prompt svg,
+.grid .sudoku-prompt svg,
+.grid .olympiad-prompt svg,
+.grid .sort-prompt svg {
+  max-width: 160px;
+  height: auto;
+}
+
+.grid .facts-prompt p {
+  max-width: 18rem;
+  font-size: 0.95rem;
+}
+
+.grid .sequence-prompt {
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+
+.odd-one-out-items {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.odd-one-out-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.odd-one-out-place {
+  font-weight: 700;
+}
+
+.odd-one-out-word,
+.odd-one-out-number {
+  padding: 0.5rem 1rem;
+  border: 2px solid #d8d0bd;
+  border-radius: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.grid .odd-one-out-word,
+.grid .odd-one-out-number {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9rem;
+}
