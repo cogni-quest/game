@@ -11,6 +11,14 @@ export interface AttemptPolicy {
 
 export const DEFAULT_ATTEMPT_POLICY: AttemptPolicy = { maxAttempts: 2 }
 
+/**
+ * The policy for a step's tasks: its own number of tries when the graph gives
+ * one — a grid dictation gets one, a second would be guessing the cells around.
+ */
+export function attemptPolicyFor(step: { readonly attempts?: number }): AttemptPolicy {
+  return step.attempts === undefined ? DEFAULT_ATTEMPT_POLICY : { maxAttempts: step.attempts }
+}
+
 export interface Outcome<A> {
   readonly verdict: 'correct' | 'wrong'
   /** No more tries on this task. */

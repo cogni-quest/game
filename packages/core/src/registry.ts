@@ -32,6 +32,8 @@ export interface Format {
  */
 export interface Step {
   readonly id: string
+  /** Tries a task of this step gets, when the default does not suit it. */
+  readonly attempts?: number
   readonly formats: readonly Format[]
 }
 

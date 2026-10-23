@@ -55,6 +55,16 @@ export interface TaskPlugin<
 }
 
 /**
+ * What a plugin's own answer form gets: whether it may still be answered, how
+ * to hand the answer in, and the right answer once the tries have run out.
+ */
+export interface AnswerIO {
+  readonly disabled: boolean
+  readonly submit: (given: unknown) => void
+  readonly reveal?: unknown
+}
+
+/**
  * How a game draws a task it cannot see inside: found by the id of the plugin
  * that made it. Generic over what a render returns, so the core does not
  * depend on React.
@@ -62,4 +72,10 @@ export interface TaskPlugin<
 export interface TaskView<Rendered> {
   readonly pluginId: string
   renderPrompt(task: Task): Rendered
+  /**
+   * The plugin's own answer form, when the shared ones — pad, buttons — do
+   * not fit: a board to point at. Without it the game uses the shared form
+   * for the answer's shape.
+   */
+  renderAnswer?(task: Task, io: AnswerIO): Rendered
 }

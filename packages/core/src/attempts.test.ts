@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { numberAnswer } from './answers/number'
-import { startAttempts } from './attempts'
+import { attemptPolicyFor, DEFAULT_ATTEMPT_POLICY, startAttempts } from './attempts'
 
 describe('startAttempts', () => {
   it('ends on a right first try, without the model', () => {
@@ -52,5 +52,17 @@ describe('startAttempts', () => {
 
   it('refuses a policy with no tries', () => {
     expect(() => startAttempts(numberAnswer(1, 5), { maxAttempts: 0 })).toThrow(RangeError)
+  })
+})
+
+describe('attemptPolicyFor', () => {
+  it('takes the step’s own tries, or the default', () => {
+    expect(attemptPolicyFor({ attempts: 1 })).toEqual({ maxAttempts: 1 })
+    expect(attemptPolicyFor({})).toBe(DEFAULT_ATTEMPT_POLICY)
+  })
+
+  it('ends a one-try task on the first miss, naming the answer', () => {
+    const attempts = startAttempts(numberAnswer(13, 20), attemptPolicyFor({ attempts: 1 }))
+    expect(attempts.submit(12)).toMatchObject({ verdict: 'wrong', final: true, reveal: 13 })
   })
 })
