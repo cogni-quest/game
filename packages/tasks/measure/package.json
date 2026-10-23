@@ -1,0 +1,15 @@
+{
+  "name": "@cogni/task-measure",
+  "private": true,
+  "type": "module",
+  "description": "Task plugin: read a mass on scales or a volume in jars",
+  "exports": {
+    "./logic": "./src/logic/index.ts",
+    "./view": "./src/view/index.tsx"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "react": "^19.3.1",
+    "zod": "^4.6.7"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@cogni/task-sudoku",
+  "private": true,
+  "type": "module",
+  "description": "Task plugin: 4×4 sudoku and 3×3 magic squares",
+  "exports": {
+    "./logic": "./src/logic/index.ts",
+    "./view": "./src/view/index.tsx"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "react": "^19.3.1",
+    "zod": "^4.6.7"
+  }
+}
