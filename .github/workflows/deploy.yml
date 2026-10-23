@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push supersedes one still in flight.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Nothing reaches the child that has not passed the whole check.
+      - run: npm run check
+
+      - name: Build
+        run: npm run build
+        env:
+          # Served from https://cogni-quest.github.io/game/, on the same origin
+          # as the old Quest and «Лавка чудес», so all three share the coins.
+          # Both slashes matter.
+          BASE_PATH: /game/
+
+      # Pages has no fallback to the app for /game/detective or /game/test: it
+      # serves 404.html for any path it does not know, so that is the app too.
+      - run: cp apps/play/dist/index.html apps/play/dist/404.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: apps/play/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
