@@ -1,4 +1,10 @@
-import { createRegistry, type Task, type TaskView } from '@cogni/core'
+import {
+  createRegistry,
+  type AnswerIO,
+  type Task,
+  type TaskPlugin,
+  type TaskView,
+} from '@cogni/core'
 import { additionPlugin } from '@cogni/task-addition/logic'
 import { additionView } from '@cogni/task-addition/view'
 import { comparingPlugin } from '@cogni/task-comparing/logic'
@@ -69,6 +75,8 @@ import { olympiadPlugin } from '@cogni/task-olympiad/logic'
 import { olympiadView } from '@cogni/task-olympiad/view'
 import { sortPlugin } from '@cogni/task-sort/logic'
 import { sortView } from '@cogni/task-sort/view'
+import { dictationPlugin } from '@cogni/task-dictation/logic'
+import { dictationView } from '@cogni/task-dictation/view'
 import type { ReactNode } from 'react'
 
 /**
@@ -111,14 +119,39 @@ const PLUGINS = [
   { logic: sudokuPlugin, view: sudokuView },
   { logic: olympiadPlugin, view: olympiadView },
   { logic: sortPlugin, view: sortView },
+  { logic: dictationPlugin, view: dictationView },
 ] as const
 
 export const registry = createRegistry(PLUGINS.map((p) => p.logic))
 
 const views = new Map<string, TaskView<ReactNode>>(PLUGINS.map((p) => [p.view.pluginId, p.view]))
+const plugins = new Map<string, TaskPlugin>(PLUGINS.map((p) => [p.logic.id, p.logic]))
 
-export function renderPrompt(task: Task): ReactNode {
+function viewOf(task: Task): TaskView<ReactNode> {
   const view = views.get(task.pluginId)
   if (!view) throw new Error(`No view for tasks of plugin '${task.pluginId}'`)
-  return view.renderPrompt(task)
+  return view
+}
+
+export function renderPrompt(task: Task): ReactNode {
+  return viewOf(task).renderPrompt(task)
+}
+
+/** Whether the task's plugin brings its own answer form, as a board to point at. */
+export function hasOwnAnswer(task: Task): boolean {
+  return viewOf(task).renderAnswer !== undefined
+}
+
+/** The plugin's own answer form; only for a task whose plugin has one. */
+export function renderOwnAnswer(task: Task, io: AnswerIO): ReactNode {
+  const view = viewOf(task)
+  if (!view.renderAnswer) throw new Error(`Plugin '${task.pluginId}' has no answer form of its own`)
+  return view.renderAnswer(task, io)
+}
+
+/** What the teacher reads aloud for the task. */
+export function spoken(task: Task): string {
+  const plugin = plugins.get(task.pluginId)
+  if (!plugin) throw new Error(`No known plugin '${task.pluginId}'`)
+  return plugin.speak(task)
 }

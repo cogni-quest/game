@@ -2,7 +2,7 @@ import { isChoiceAnswer, isPickAnswer, systemRandom, type Task } from '@cogni/co
 import type { CurriculumStep } from '@cogni/curriculum'
 import { useState } from 'react'
 
-import { registry, renderPrompt } from './registry'
+import { hasOwnAnswer, registry, renderOwnAnswer, renderPrompt } from './registry'
 import { formatLabel, LEVELS_SHOWN, levelContents, levelLabel, sectionLabel } from './variants'
 
 /** The right answer as the child would see it: the number, or the option's label. */
@@ -117,7 +117,15 @@ export function GridMode({ step }: { readonly step: CurriculumStep }) {
                         {cell.tasks.map((task, t) => (
                           <div key={`${task.itemKey}-${String(t)}`} className="example">
                             {renderPrompt(task)}
-                            <span className="answer">→ {answerText(task)}</span>
+                            {hasOwnAnswer(task) ? (
+                              renderOwnAnswer(task, {
+                                disabled: true,
+                                submit: () => undefined,
+                                reveal: task.answer.expected,
+                              })
+                            ) : (
+                              <span className="answer">→ {answerText(task)}</span>
+                            )}
                           </div>
                         ))}
                       </>

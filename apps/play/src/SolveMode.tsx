@@ -1,4 +1,5 @@
 import {
+  attemptPolicyFor,
   isChoiceAnswer,
   isNumberAnswer,
   isPickAnswer,
@@ -19,7 +20,7 @@ import { useState } from 'react'
 import { ChoiceButtons } from './ChoiceButtons'
 import { NumberPad } from './NumberPad'
 import { PickButtons } from './PickButtons'
-import { registry, renderPrompt } from './registry'
+import { hasOwnAnswer, registry, renderOwnAnswer, renderPrompt } from './registry'
 import {
   formatLabel,
   levelContents,
@@ -59,6 +60,11 @@ type Round =
       readonly answer: PickAnswer
       readonly attempts: Attempts<readonly string[]>
     }
+  | {
+      readonly task: Task
+      readonly form: 'own'
+      readonly attempts: Attempts<unknown>
+    }
 
 function formatAt(step: CurriculumStep, index: number): CurriculumFormat {
   const format = step.formats[index]
@@ -80,14 +86,18 @@ function generate(step: CurriculumStep, source: Source): Task {
 function newRound(step: CurriculumStep, source: Source): Round {
   const task = generate(step, source)
   const { answer } = task
+  const policy = attemptPolicyFor(step)
+  if (hasOwnAnswer(task)) {
+    return { task, form: 'own', attempts: startAttempts(answer, policy) }
+  }
   if (isNumberAnswer(answer)) {
-    return { task, form: 'number', answer, attempts: startAttempts(answer) }
+    return { task, form: 'number', answer, attempts: startAttempts(answer, policy) }
   }
   if (isChoiceAnswer(answer)) {
-    return { task, form: 'choice', answer, attempts: startAttempts(answer) }
+    return { task, form: 'choice', answer, attempts: startAttempts(answer, policy) }
   }
   if (isPickAnswer(answer)) {
-    return { task, form: 'pick', answer, attempts: startAttempts(answer) }
+    return { task, form: 'pick', answer, attempts: startAttempts(answer, policy) }
   }
   throw new Error(`No answer form for '${answer.shape}' yet`)
 }
@@ -113,8 +123,12 @@ function decode(value: string): Source {
   return { kind: 'section', format: Number(a), section: Number(b) }
 }
 
-/** What the child is told the right answer was: the number, or the options' labels. */
-function revealed(round: Round): string {
+/**
+ * What the child is told the right answer was: the number, or the options'
+ * labels. A plugin's own form shows it on its board instead.
+ */
+function revealed(round: Round): string | null {
+  if (round.form === 'own') return null
   if (round.form === 'number') return String(round.answer.expected)
   const { options } = round.answer
   const expected: readonly string[] =
@@ -192,7 +206,15 @@ export function SolveMode({ step }: { readonly step: CurriculumStep }) {
       {renderPrompt(round.task)}
       <p className="item-key">{round.task.itemKey}</p>
 
-      {round.form === 'number' ? (
+      {round.form === 'own' ? (
+        renderOwnAnswer(round.task, {
+          disabled: finished,
+          submit: (given) => {
+            record(round.attempts.submit(given))
+          },
+          ...(outcome?.final === true ? { reveal: round.task.answer.expected } : {}),
+        })
+      ) : round.form === 'number' ? (
         <NumberPad
           value={input}
           maxDigits={String(round.answer.upTo).length}
@@ -243,10 +265,11 @@ function Verdict({
   reveal,
 }: {
   readonly outcome: Outcome<unknown>
-  readonly reveal: string
+  readonly reveal: string | null
 }) {
   if (outcome.verdict === 'correct') return <p className="verdict correct">Верно!</p>
   if (!outcome.final) return <p className="verdict wrong">Попробуй ещё раз</p>
+  if (reveal === null) return <p className="verdict wrong">Правильный ответ — на поле</p>
   return (
     <p className="verdict wrong">
       Правильный ответ: <strong>{reveal}</strong>
