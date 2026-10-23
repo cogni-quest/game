@@ -21,6 +21,7 @@
     "@cogni/task-column": "*",
     "@cogni/task-comparing": "*",
     "@cogni/task-counting": "*",
+    "@cogni/task-dictation": "*",
     "@cogni/task-difference": "*",
     "@cogni/task-expressions": "*",
     "@cogni/task-facts": "*",

@@ -1,0 +1,76 @@
+{
+  "subject": "attention",
+  "textbook": "own",
+  "topics": [
+    {
+      "id": "grid-dictation",
+      "title": "Клеточный диктант",
+      "needs": [],
+      "steps": [
+        {
+          "id": "grid-dictation",
+          "title": "Куда прибежал воришка",
+          "attempts": 1,
+          "formats": [
+            {
+              "plugin": "dictation",
+              "title": "куда прибежал воришка?",
+              "sections": [
+                {
+                  "title": "6×6, 5 шагов по клетке",
+                  "knobs": { "size": 6, "steps": 5, "longest": 1 }
+                },
+                {
+                  "title": "7×7, 5 шагов по 1–3",
+                  "knobs": { "size": 7, "steps": 5, "longest": 3 }
+                },
+                {
+                  "title": "8×8, 7 шагов по 1–4",
+                  "knobs": { "size": 8, "steps": 7, "longest": 4 }
+                },
+                {
+                  "title": "8×8, 9 шагов по 1–4, путь пересекает себя",
+                  "knobs": { "size": 8, "steps": 9, "longest": 4, "cross": true }
+                },
+                {
+                  "title": "8×8, 11 шагов по 1–4, путь пересекает себя",
+                  "knobs": { "size": 8, "steps": 11, "longest": 4, "cross": true }
+                }
+              ]
+            },
+            {
+              "plugin": "dictation",
+              "title": "★ откуда прибежал воришка?",
+              "stars": 1,
+              "sections": [
+                {
+                  "title": "6×6, 4 шага по клетке",
+                  "knobs": { "size": 6, "steps": 4, "longest": 1, "ask": "start" }
+                },
+                {
+                  "title": "7×7, 5 шагов по 1–3",
+                  "knobs": { "size": 7, "steps": 5, "longest": 3, "ask": "start" }
+                }
+              ]
+            },
+            {
+              "plugin": "dictation",
+              "title": "★★ по диагонали",
+              "stars": 2,
+              "sections": [
+                {
+                  "title": "6×6, 4 шага по клетке",
+                  "knobs": { "size": 6, "steps": 4, "longest": 1, "diagonal": true }
+                },
+                {
+                  "title": "8×8, 6 шагов по 1–3",
+                  "knobs": { "size": 8, "steps": 6, "longest": 3, "diagonal": true }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

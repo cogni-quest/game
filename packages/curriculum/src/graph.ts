@@ -35,11 +35,18 @@ const format = z
     sections: 'sections' in rest ? rest.sections : [{ knobs: rest.knobs }],
   }))
 
-const step = z.strictObject({
-  id: z.string().min(1),
-  title: z.string().min(1),
-  formats: z.array(format).min(1),
-})
+const step = z
+  .strictObject({
+    id: z.string().min(1),
+    title: z.string().min(1),
+    /** Tries a task of this step gets, when the default does not suit it. */
+    attempts: z.int().min(1).optional(),
+    formats: z.array(format).min(1),
+  })
+  .transform(({ attempts, ...rest }) => ({
+    ...rest,
+    ...(attempts === undefined ? {} : { attempts }),
+  }))
 
 const topic = z.strictObject({
   id: z.string().min(1),

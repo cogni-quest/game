@@ -34,10 +34,11 @@ import { mazePlugin } from '@cogni/task-maze/logic'
 import { sudokuPlugin } from '@cogni/task-sudoku/logic'
 import { olympiadPlugin } from '@cogni/task-olympiad/logic'
 import { sortPlugin } from '@cogni/task-sort/logic'
+import { dictationPlugin } from '@cogni/task-dictation/logic'
 import { describe, expect, it } from 'vitest'
 
 import { allSteps, parseGraph, type CurriculumStep } from './graph'
-import { logicPeterson, mathMoro } from './index'
+import { attention, logicPeterson, mathMoro } from './index'
 
 const registry = createRegistry([
   additionPlugin,
@@ -75,6 +76,7 @@ const registry = createRegistry([
   sudokuPlugin,
   olympiadPlugin,
   sortPlugin,
+  dictationPlugin,
 ])
 const SAMPLES = 3_000
 /** Sampling every section of every topic takes seconds, more under a parallel run. */
@@ -111,13 +113,15 @@ function keysOf(step: CurriculumStep): ReadonlySet<string> {
 }
 
 /**
- * Both graphs, each on its own. Only arithmetic needs a number format in every
+ * Every graph, each on its own. Only arithmetic needs a number format in every
  * step: in logic a pattern or a maze is answered by choosing, and that is the
- * task, not a way round it (CURRICULUM.md, «Ветка логики»).
+ * task, not a way round it (CURRICULUM.md, «Ветка логики»); a dictation is
+ * answered by pointing at a cell, and there are dozens to choose from.
  */
 describe.each([
   ['math-moro', mathMoro, true],
   ['logic-peterson', logicPeterson, false],
+  ['attention', attention, false],
 ] as const)('%s', (_name, graph, numberRule) => {
   const steps = allSteps(graph)
 

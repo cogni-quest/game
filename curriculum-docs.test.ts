@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { logicPeterson, mathMoro } from '@cogni/curriculum'
+import { attention, logicPeterson, mathMoro } from '@cogni/curriculum'
 import { describe, expect, it } from 'vitest'
 
 /**
@@ -179,5 +179,26 @@ describe('the logic branch of docs/CURRICULUM.md and its data', () => {
       t.needs.filter((need) => !edges.has(`${need}→${t.id}`)).map((need) => `${need} → ${t.id}`),
     )
     expect(unbacked).toEqual([])
+  })
+})
+
+describe('the memory and attention section of docs/CURRICULUM.md and its data', () => {
+  const section = doc.slice(doc.indexOf('## Память и внимание'), doc.indexOf('## Сверить'))
+  const ids = [...section.matchAll(/^#### ([a-z-]+) «/gm)].map((m) => m[1] ?? '')
+
+  it('lists the topics of the data, in the same order, all marked done', () => {
+    expect(ids).toEqual(attention.topics.map((t) => t.id))
+    const done = [...section.matchAll(/^#### ([a-z-]+) «.*✅ сделано/gm)].map((m) => m[1])
+    expect(done).toEqual(ids)
+  })
+
+  it('ticks «Есть» on exactly the formats the data has', () => {
+    const mismatched = attention.topics
+      .filter((t) => {
+        const inData = t.steps.flatMap((s) => s.formats.map((f) => f.title ?? f.plugin)).sort()
+        return JSON.stringify(tickedFormats(t.id)) !== JSON.stringify(inData)
+      })
+      .map((t) => t.id)
+    expect(mismatched).toEqual([])
   })
 })
