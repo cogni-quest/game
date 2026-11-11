@@ -27,6 +27,7 @@
     "@cogni/task-facts": "*",
     "@cogni/task-groups": "*",
     "@cogni/task-length-compare": "*",
+    "@cogni/task-lights": "*",
     "@cogni/task-maze": "*",
     "@cogni/task-measure": "*",
     "@cogni/task-missing": "*",

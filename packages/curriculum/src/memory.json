@@ -1,0 +1,72 @@
+{
+  "subject": "memory",
+  "textbook": "own",
+  "topics": [
+    {
+      "id": "light-sequence",
+      "title": "Повтори огоньки",
+      "needs": [],
+      "steps": [
+        {
+          "id": "light-sequence",
+          "title": "Повтори порядок огоньков",
+          "attempts": 1,
+          "formats": [
+            {
+              "plugin": "lights",
+              "title": "повтори огоньки",
+              "sections": [
+                {
+                  "title": "3×3, 3 огонька",
+                  "knobs": { "size": 3, "length": 3 }
+                },
+                {
+                  "title": "3×3, 5 огоньков",
+                  "knobs": { "size": 3, "length": 5 }
+                },
+                {
+                  "title": "3×3, 3 огонька, 2 цвета",
+                  "knobs": { "size": 3, "length": 3, "colours": 2 }
+                },
+                {
+                  "title": "4×4, 4 огонька, 2 цвета",
+                  "knobs": { "size": 4, "length": 4, "colours": 2 }
+                },
+                {
+                  "title": "4×4, 4 огонька, 3 цвета",
+                  "knobs": { "size": 4, "length": 4, "colours": 3 }
+                }
+              ]
+            },
+            {
+              "plugin": "lights",
+              "title": "★ наоборот",
+              "stars": 1,
+              "sections": [
+                {
+                  "title": "3×3, 3 огонька",
+                  "knobs": { "size": 3, "length": 3, "order": "backward" }
+                },
+                {
+                  "title": "3×3, 4 огонька",
+                  "knobs": { "size": 3, "length": 4, "order": "backward" }
+                }
+              ]
+            },
+            {
+              "plugin": "lights",
+              "title": "★★ наоборот с цветами",
+              "stars": 2,
+              "sections": [
+                {
+                  "title": "3×3, 3 огонька, 2 цвета",
+                  "knobs": { "size": 3, "length": 3, "order": "backward", "colours": 2 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
