@@ -1,12 +1,13 @@
 import type { GamePlugin } from '@cogni/core'
 import { detectiveGame } from '@cogni/game-detective'
+import { robotsGame } from '@cogni/game-robots'
 import type { ReactNode } from 'react'
 
 import { createStandHost, type Profile } from './host'
 import { browserStore, sharedWallet, testWallet } from './wallet'
 
 /** Every game the child can pick, in the menu's order. Adding one is a line here. */
-export const GAMES: readonly GamePlugin<ReactNode>[] = [detectiveGame]
+export const GAMES: readonly GamePlugin<ReactNode>[] = [detectiveGame, robotsGame]
 
 /**
  * The built site — what the child opens — plays for real: its coins are the

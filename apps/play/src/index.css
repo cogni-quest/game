@@ -696,6 +696,177 @@ body {
   max-width: 160px;
 }
 
+.lights-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.lights-prompt figcaption {
+  font-size: 1.5rem;
+}
+
+.lights-rule {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lights-answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lights-answer svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* A flash swells a little and sends a ring out; a press clicks in. Calm, never a race. */
+.lights-bulb {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: fill 0.12s ease;
+}
+
+.lights-light.is-flash .lights-bulb {
+  animation: lights-swell 0.7s ease-out;
+}
+
+.lights-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lights-ring 0.7s ease-out forwards;
+}
+
+.lights-light.is-pressed .lights-bulb,
+.lights-light.is-shown-right .lights-bulb {
+  animation: lights-click 0.25s ease-out;
+}
+
+.lights-light.is-right .lights-bulb {
+  animation: lights-swell 0.6s ease-out 2;
+}
+
+@keyframes lights-swell {
+  0% {
+    transform: scale(0.85);
+  }
+  35% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lights-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes lights-click {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lights-bulb,
+  .lights-halo {
+    animation: none !important;
+  }
+}
+
+.lights-status {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.lights-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* The colours to paint with: big round buttons, the chosen one ringed and raised. */
+.lights-palette {
+  display: flex;
+  gap: 1rem;
+}
+
+.lights-colour {
+  width: 4rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 -0.3rem 0 rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.lights-colour.is-chosen {
+  box-shadow:
+    inset 0 -0.3rem 0 rgba(0, 0, 0, 0.2),
+    0 0 0 5px #fff,
+    0 0 0 8px #13203a;
+  transform: translateY(-0.3rem) scale(1.08);
+}
+
+.lights-colour:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.lights-buttons button {
+  min-width: 9rem;
+  min-height: 4rem;
+  border: 0;
+  border-radius: 0.75rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.lights-undo {
+  background: #e8e1d0;
+}
+
+.lights-watch,
+.lights-done {
+  background: #2d6a8a;
+  color: #fff;
+}
+
+.lights-buttons button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* The cell's caption already says the panel and the count: the board alone is enough. */
+.grid .lights-prompt,
+.grid .lights-status {
+  display: none;
+}
+
+.grid .lights-answer svg {
+  max-width: 140px;
+}
+
 /* ---- The child's menu: a game launcher, not a playroom ---- */
 
 .menu {

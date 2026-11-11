@@ -212,7 +212,8 @@ export function SolveMode({ step }: { readonly step: CurriculumStep }) {
           submit: (given) => {
             record(round.attempts.submit(given))
           },
-          ...(outcome?.final === true ? { reveal: round.task.answer.expected } : {}),
+          // Only a miss reveals: a board told the answer after a right one would show it as a miss.
+          ...(outcome?.reveal === undefined ? {} : { reveal: outcome.reveal }),
         })
       ) : round.form === 'number' ? (
         <NumberPad

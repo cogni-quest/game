@@ -77,6 +77,8 @@ import { sortPlugin } from '@cogni/task-sort/logic'
 import { sortView } from '@cogni/task-sort/view'
 import { dictationPlugin } from '@cogni/task-dictation/logic'
 import { dictationView } from '@cogni/task-dictation/view'
+import { lightsPlugin } from '@cogni/task-lights/logic'
+import { lightsView } from '@cogni/task-lights/view'
 import type { ReactNode } from 'react'
 
 /**
@@ -120,6 +122,7 @@ const PLUGINS = [
   { logic: olympiadPlugin, view: olympiadView },
   { logic: sortPlugin, view: sortView },
   { logic: dictationPlugin, view: dictationView },
+  { logic: lightsPlugin, view: lightsView },
 ] as const
 
 export const registry = createRegistry(PLUGINS.map((p) => p.logic))

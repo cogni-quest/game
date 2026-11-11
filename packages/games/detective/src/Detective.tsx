@@ -2,10 +2,18 @@ import type { GameHost, Outcome, Task, Tier } from '@cogni/core'
 import { useEffect, useState, type ReactNode } from 'react'
 
 import { CaughtScene, CopPortrait, EscapeScene, HidingScene, ThiefPortrait } from './Art'
-import { afterCatch, isOpen, readProgress, THIEVES, type Progress, type Thief } from './thieves'
+import {
+  afterCatch,
+  isOpen,
+  readProgress,
+  shown,
+  THIEVES,
+  type Progress,
+  type Thief,
+} from './thieves'
 import './detective.css'
 
-/** Its tasks: memory and attention, whichever topic of it the core chooses. */
+/** Its tasks: attention, whichever topic of it the core chooses. */
 export const SUBJECT = 'attention'
 
 export const GAME_ID = 'detective'
@@ -87,7 +95,7 @@ export function Detective({ host }: { readonly host: GameHost<ReactNode> }) {
           }}
         />
       ) : (
-        <WantedBoard host={host} progress={progress} onPick={start} />
+        <WantedBoard host={host} progress={shown(progress, location.search)} onPick={start} />
       )}
     </section>
   )

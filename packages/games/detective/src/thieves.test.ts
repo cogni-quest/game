@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { afterCatch, isOpen, readProgress, START, THIEVES } from './thieves'
+import { afterCatch, isOpen, readProgress, shown, START, THIEVES } from './thieves'
 
 describe('the wanted board', () => {
   it('has one thief per tier, weakest first, the boss last', () => {
@@ -25,6 +25,11 @@ describe('the wanted board', () => {
       expect(readProgress(stored)).toEqual(START)
     },
   )
+
+  it('shows every thief open with ?all in the address, and only then', () => {
+    expect(shown(START, '?all')).toEqual({ opened: THIEVES.length })
+    expect(shown(START, '')).toEqual(START)
+  })
 
   it('keeps kept progress within the board', () => {
     expect(readProgress({ opened: 4 })).toEqual({ opened: 4 })

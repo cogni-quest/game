@@ -1,26 +1,17 @@
-import {
-  allSteps,
-  attention,
-  logicPeterson,
-  mathMoro,
-  type CurriculumStep,
-} from '@cogni/curriculum'
+import { allSteps, mathMoro, SUBJECTS, type CurriculumStep } from '@cogni/curriculum'
 import { useState } from 'react'
 
 import { GridMode } from './GridMode'
 import { pathOf } from './routes'
 import { SolveMode } from './SolveMode'
 
-const STEPS = [...allSteps(mathMoro), ...allSteps(logicPeterson), ...allSteps(attention)]
+const STEPS = SUBJECTS.flatMap((s) => allSteps(s.graph))
 
 /** The grades the curriculum covers, in order, to group the step picker by. */
 const GRADES = [...new Set(mathMoro.topics.map((t) => t.grade))].filter((g) => g !== undefined)
 
 /** The branches beside the school years, each its own group of the picker. */
-const BRANCHES = [
-  { label: 'Логика', graph: logicPeterson },
-  { label: 'Память и внимание', graph: attention },
-] as const
+const BRANCHES = SUBJECTS.filter((s) => s.graph !== mathMoro)
 
 type Mode = 'solve' | 'grid'
 

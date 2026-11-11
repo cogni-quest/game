@@ -41,6 +41,15 @@ export function readProgress(stored: unknown): Progress {
     : START
 }
 
+/**
+ * What the board shows: the kept progress, or every thief open when the
+ * address has `?all` — for a parent to try them all. It is never saved, so
+ * the child's own progress stays as it was.
+ */
+export function shown(progress: Progress, search: string): Progress {
+  return new URLSearchParams(search).has('all') ? { opened: THIEVES.length } : progress
+}
+
 export function isOpen(progress: Progress, tier: Tier): boolean {
   return THIEVES.findIndex((t) => t.tier === tier) < progress.opened
 }

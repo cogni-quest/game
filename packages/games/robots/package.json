@@ -1,0 +1,13 @@
+{
+  "name": "@cogni/game-robots",
+  "private": true,
+  "type": "module",
+  "description": "Game plugin: a robot workshop — each robot is assembled by repeating the lights of its programs",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "react": "^19.3.1"
+  }
+}

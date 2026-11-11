@@ -8,18 +8,16 @@ import {
   type GameHost,
   type Task,
 } from '@cogni/core'
-import { allSteps, attention, logicPeterson, mathMoro, type Graph } from '@cogni/curriculum'
+import { allSteps, SUBJECTS, type Graph } from '@cogni/curriculum'
 import type { ReactNode } from 'react'
 
 import { hasOwnAnswer, registry, renderOwnAnswer, renderPrompt, spoken } from './registry'
 import { SharedAnswer } from './SharedAnswer'
 import type { Wallet } from './wallet'
 
-const GRAPHS: Readonly<Record<string, Graph>> = {
-  math: mathMoro,
-  logic: logicPeterson,
-  attention,
-}
+const GRAPHS: Readonly<Record<string, Graph>> = Object.fromEntries(
+  SUBJECTS.map((s) => [s.id, s.graph]),
+)
 
 /**
  * Whose coins and progress a host keeps: the child's real ones, or the test

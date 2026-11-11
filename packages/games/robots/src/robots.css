@@ -1,0 +1,906 @@
+/*
+ * «Робо-мастерская»: a workshop at night shift. Steel-blue card, the lights
+ * panel in the middle is the brightest thing on screen.
+ */
+.robots {
+  --steel: #18202f;
+  --steel-2: #233049;
+  --line: #33415f;
+  --text: #e6eef8;
+  --muted: #9fb0c8;
+  --cyan: #6fe8ff;
+  --gold: #e8b630;
+  --green: #5fd38d;
+  --red: #ff6b5b;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: min(100%, 66rem);
+  padding: 1.25rem 1.5rem 2rem;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(rgba(111, 232, 255, 0.04) 1px, transparent 1px) 0 0 / 2rem 2rem,
+    linear-gradient(90deg, rgba(111, 232, 255, 0.04) 1px, transparent 1px) 0 0 / 2rem 2rem,
+    linear-gradient(180deg, var(--steel) 0%, var(--steel-2) 100%);
+  box-shadow: 0 1.25rem 2.5rem rgba(10, 16, 30, 0.4);
+  color: var(--text);
+}
+
+/* ---- Header ---- */
+
+.robots-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.robots-title {
+  padding: 0.35rem 0.9rem;
+  border: 2px solid var(--line);
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.robots-coins {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.9rem 0.3rem 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffe08a, var(--gold));
+  box-shadow: 0 0.25rem 0 #a87f12;
+  color: #5a3d00;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.robots-coins-count {
+  display: inline-block;
+  min-width: 1.2ch;
+  animation: robots-bump 0.5s ease-out;
+}
+
+/* ---- Speech ---- */
+
+.robots-bubble {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  background: #2c3a58;
+  box-shadow: inset 0 0 0 2px var(--line);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.robots-bubble.win {
+  box-shadow: inset 0 0 0 2px var(--green);
+  color: #c9f2d8;
+}
+
+.robots-bubble.fail {
+  box-shadow: inset 0 0 0 2px var(--red);
+  color: #ffd2cb;
+}
+
+.robots-mentor {
+  width: 5rem;
+  height: auto;
+  flex: none;
+  animation: robots-hover 2.4s ease-in-out infinite;
+}
+
+.robots-mentor.cheer {
+  animation: robots-hop 0.6s ease-out 2;
+}
+
+.robots-propeller {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-spin 0.3s linear infinite;
+}
+
+/* ---- The board of robots ---- */
+
+.robots-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.robots-board-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 40rem;
+}
+
+.robots-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 12.5rem);
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.robots-cards li {
+  display: flex;
+}
+
+.robots-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.85rem;
+  border: 0;
+  border-radius: 1rem;
+  background: #222d44;
+  box-shadow:
+    inset 0 0 0 2px var(--line),
+    0 0.3rem 0 #121926;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.robots-card:not(.locked):hover,
+.robots-card:not(.locked):focus-visible {
+  outline: 3px solid var(--cyan);
+  transform: translateY(-0.25rem);
+}
+
+.robots-card.locked {
+  cursor: default;
+}
+
+.robots-card .robots-figure {
+  width: 6.5rem;
+  height: auto;
+}
+
+.robots-card-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.robots-card-job {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.robots-card-stars {
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.robots-card.locked .robots-card-stars {
+  opacity: 0.4;
+}
+
+.robots-card-reward {
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  border-top: 2px dashed var(--line);
+  color: #ffe08a;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.robots-card-reward.locked {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+
+.robots-lock {
+  position: absolute;
+  top: 3rem;
+  left: 50%;
+  font-size: 2.2rem;
+  transform: translateX(-50%);
+}
+
+/* ---- Assembly: robot · panel · mentor ---- */
+
+.robots-play {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.robots-stand {
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 12rem;
+}
+
+.robots-stand .robots-figure {
+  width: 10rem;
+  height: auto;
+}
+
+.robots-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.robots-module-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.robots-module-row.now {
+  box-shadow: inset 0 0 0 2px var(--cyan);
+  color: var(--text);
+}
+
+.robots-module-row.done {
+  background: rgba(95, 211, 141, 0.15);
+  color: var(--green);
+}
+
+.robots-module-row.failed {
+  background: rgba(255, 107, 91, 0.15);
+  color: var(--red);
+}
+
+.robots-module-mark {
+  width: 1.2em;
+  text-align: center;
+}
+
+/* A fixed width, so the robot and Бип do not shift when the buttons under the panel go. */
+.robots-console {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 24rem;
+  max-width: 100%;
+}
+
+/* The sound switch sits by the coins, at the right of the header. */
+.robots-sound {
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  background: #2c3a58;
+  box-shadow: inset 0 0 0 2px var(--line);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.robots-sound.off {
+  opacity: 0.6;
+}
+
+.robots-side {
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 15rem;
+}
+
+.robots-mentor-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.robots-verdict {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  animation: robots-pop 0.5s ease-out;
+}
+
+.robots-verdict strong {
+  font-size: 1.6rem;
+}
+
+.robots-verdict.win {
+  background: linear-gradient(180deg, #2f6b52, #24533f);
+  box-shadow: inset 0 0 0 3px var(--green);
+  color: #d4f7e2;
+}
+
+.robots-flying-coin {
+  position: absolute;
+  top: 0.4rem;
+  right: 1rem;
+  color: #ffe08a;
+  font-size: 1.5rem;
+  font-weight: 800;
+  opacity: 0;
+  animation: robots-fly 1.1s ease-out 0.3s;
+}
+
+.robots-opened {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.75rem;
+  background: rgba(232, 182, 48, 0.15);
+  box-shadow: inset 0 0 0 2px var(--gold);
+  color: #ffe08a;
+  text-align: center;
+  animation: robots-pop 0.5s ease-out 0.4s backwards;
+}
+
+.robots-after {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.robots-next {
+  padding: 0.85rem 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #8ff0ff, #3fc6e6);
+  box-shadow: 0 0.3rem 0 #1f8aa6;
+  color: #082430;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  animation: robots-pop 0.4s ease-out 0.3s backwards;
+}
+
+.robots-next:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.robots-next.secondary {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--line);
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+/* ---- The plugin's prompt and panel, themed for the workshop ---- */
+
+.robots .lights-prompt figcaption {
+  color: var(--text);
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.robots .lights-rule {
+  color: var(--muted);
+}
+
+.robots .lights-rule.backward {
+  color: #ffb15b;
+}
+
+.robots .lights-panel {
+  fill: #121a2b;
+  stroke: var(--line);
+  stroke-width: 3px;
+}
+
+.robots .lights-answer svg {
+  width: auto;
+  max-height: min(26rem, calc(100vh - 20rem));
+  min-height: 15rem;
+  filter: drop-shadow(0 0.6rem 0.9rem rgba(0, 0, 0, 0.45));
+}
+
+.robots .lights-status {
+  color: var(--muted);
+}
+
+.robots .lights-buttons button {
+  border-radius: 1rem;
+  font-weight: 800;
+}
+
+.robots .lights-watch,
+.robots .lights-done {
+  background: linear-gradient(180deg, #8ff0ff, #3fc6e6);
+  box-shadow: 0 0.3rem 0 #1f8aa6;
+  color: #082430;
+}
+
+.robots .lights-undo {
+  background: #2c3a58;
+  box-shadow: 0 0.3rem 0 #182236;
+  color: var(--text);
+}
+
+.robots .lights-buttons button:not(:disabled):active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.robots .lights-light.is-flash .lights-bulb {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.55));
+}
+
+/* ---- Robots in motion ---- */
+
+/* The module just loaded drops in from above and settles. */
+.robots-module.fresh {
+  animation: robots-drop 0.6s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+/*
+ * Open robots on the board breathe a little; the dark ones stand still. The
+ * whole <svg> moves, which the browser does without redrawing the picture.
+ */
+.robots-card:not(.locked) .robots-figure {
+  animation: robots-bob 2.6s ease-in-out infinite;
+}
+
+.robots-cards li:nth-child(2n) .robots-figure {
+  animation-delay: -1.3s;
+}
+
+/* The robot on the stand blinks now and then, alive even while it is being built. */
+.robots-stand .robots-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-blink-eyes 4s infinite;
+}
+
+/* The right arm swings about the shoulder at (53, −108) of the robot. */
+.robots-arm {
+  transform-box: view-box;
+  transform-origin: 53px -108px;
+}
+
+.robots-figure.active .robots-arm {
+  animation: robots-wave 0.7s ease-in-out 0.5s 4;
+}
+
+.robots-figure.active .robots-arm.broom {
+  animation: robots-sweep 0.9s ease-in-out infinite;
+}
+
+.robots-figure.active .robots-arm.box,
+.robots-figure.active .robots-arm.claw {
+  animation: robots-lift 1.1s ease-in-out infinite;
+}
+
+.robots-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: robots-flicker 0.25s ease-in-out infinite alternate;
+}
+
+.robots-figure.active .robots-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-roll 0.8s linear infinite;
+}
+
+.robots-figure.active .robots-tread {
+  animation: robots-tread 0.6s linear infinite;
+}
+
+.robots-beam {
+  animation: robots-beam 1.6s ease-in-out infinite;
+}
+
+.robots-figure.active .robots-dish {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: robots-dish 2s ease-in-out infinite;
+}
+
+.robots-visor.on {
+  animation: robots-blink 1s steps(2) infinite;
+}
+
+.robots-smoke {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-smoke 1.8s ease-out infinite;
+}
+
+.robots-smoke.n1 {
+  animation-delay: 0.6s;
+}
+
+.robots-mentor-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-look 5s ease-in-out infinite;
+}
+
+/* ---- Confetti over the stand ---- */
+
+.robots-stand {
+  position: relative;
+}
+
+.robots-confetti {
+  position: absolute;
+  inset: -2rem -1rem 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.robots-confetti-piece {
+  position: absolute;
+  top: -2rem;
+  font-size: 1.4rem;
+  animation: robots-fall 2.2s ease-in forwards;
+}
+
+.robots-confetti-piece.n1,
+.robots-confetti-piece.n4 {
+  font-size: 1rem;
+  animation-duration: 2.6s;
+}
+
+.robots-confetti-piece.n2,
+.robots-confetti-piece.n6 {
+  font-size: 1.8rem;
+  animation-duration: 1.9s;
+}
+
+/* ---- The menu card ---- */
+
+.robots-cover .robots-arm {
+  animation: none !important;
+}
+
+.robots-cover-lit {
+  animation: robots-blink 1.8s steps(2) infinite;
+}
+
+.robots-cover-lit.n1 {
+  animation-delay: 0.6s;
+}
+
+.robots-cover-lit.n2 {
+  animation-delay: 1.2s;
+}
+
+.robots-figure.active .robots-figure-body {
+  animation: robots-hop 0.6s ease-out 0.2s 2;
+}
+
+.robots-figure.active .robots-antenna-tip {
+  animation: robots-blink 0.9s steps(2) infinite;
+}
+
+.robots-chest-lamp {
+  animation: robots-blink 1.2s steps(2) infinite;
+}
+
+.robots-chest-lamp.n1,
+.robots-chest-lamp.n4 {
+  animation-delay: 0.4s;
+}
+
+.robots-chest-lamp.n2,
+.robots-chest-lamp.n5 {
+  animation-delay: 0.8s;
+}
+
+.robots-figure.broken .robots-figure-body {
+  animation: robots-shake 0.5s ease-in-out 2;
+}
+
+.robots-spark {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robots-spark 0.8s ease-out infinite;
+}
+
+.robots-spark.n1 {
+  animation-delay: 0.2s;
+}
+
+.robots-spark.n2 {
+  animation-delay: 0.4s;
+}
+
+.robots-spark.n3 {
+  animation-delay: 0.6s;
+}
+
+/* ---- Narrow screens: one column, the panel first ---- */
+
+@media (max-width: 62rem) {
+  .robots-play {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .robots-console {
+    order: -1;
+  }
+
+  .robots-stand,
+  .robots-side {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 44rem) {
+  .robots-cards {
+    grid-template-columns: repeat(2, 11rem);
+  }
+}
+
+@keyframes robots-bump {
+  40% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes robots-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes robots-fly {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(1.5rem, -4rem) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes robots-hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes robots-hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes robots-spin {
+  to {
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes robots-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes robots-shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes robots-spark {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes robots-drop {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes robots-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes robots-blink-eyes {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes robots-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+}
+
+@keyframes robots-sweep {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes robots-lift {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-18deg);
+  }
+}
+
+@keyframes robots-flicker {
+  from {
+    transform: scaleY(0.8);
+    opacity: 0.85;
+  }
+  to {
+    transform: scaleY(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes robots-roll {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes robots-tread {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+@keyframes robots-beam {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes robots-dish {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes robots-smoke {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-24px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes robots-look {
+  0%,
+  40%,
+  100% {
+    transform: translateX(0);
+  }
+  50%,
+  60% {
+    transform: translateX(-4px);
+  }
+  70%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes robots-fall {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20rem) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robots *,
+  .robots *::before,
+  .robots *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
