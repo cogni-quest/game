@@ -21,19 +21,29 @@ export function isCellAnswer(answer: AnswerSpec<unknown>): answer is CellAnswer 
   return answer.shape === 'cell'
 }
 
-export function cellAnswer(expected: Cell, rows: number, columns: number): CellAnswer {
+/** Throws unless the board has whole sides; shared by every answer on a board. */
+export function checkBoard(rows: number, columns: number): void {
   const fits = (n: number) => Number.isInteger(n) && n >= 1
   if (!fits(rows) || !fits(columns)) {
     throw new RangeError(`A board has whole sides, not ${String(rows)} × ${String(columns)}`)
   }
-  const inside = ({ row, column }: Cell) =>
+}
+
+/** Whether a cell is one of the board's. */
+export function onBoard({ row, column }: Cell, rows: number, columns: number): boolean {
+  return (
     Number.isInteger(row) &&
     Number.isInteger(column) &&
     row >= 0 &&
     row < rows &&
     column >= 0 &&
     column < columns
-  if (!inside(expected)) {
+  )
+}
+
+export function cellAnswer(expected: Cell, rows: number, columns: number): CellAnswer {
+  checkBoard(rows, columns)
+  if (!onBoard(expected, rows, columns)) {
     throw new RangeError(
       `The right cell ${String(expected.row)}.${String(expected.column)} is off the board`,
     )

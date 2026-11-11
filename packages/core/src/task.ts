@@ -62,6 +62,13 @@ export interface AnswerIO {
   readonly disabled: boolean
   readonly submit: (given: unknown) => void
   readonly reveal?: unknown
+  /**
+   * Tells the game what just happened on the plugin's own form — «flash»,
+   * «press», «undo» — so the game can answer it with its own sound or motion.
+   * The plugin names its events and stays silent itself; a game that does not
+   * listen leaves this out.
+   */
+  readonly cue?: (event: string) => void
 }
 
 /**

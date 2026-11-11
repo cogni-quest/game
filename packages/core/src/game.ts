@@ -2,7 +2,7 @@ import type { Outcome } from './attempts'
 import type { Tier } from './registry'
 import type { AnswerIO, Task } from './task'
 
-/** A subject — 'math', 'logic', 'attention' — never a topic: topics are the core's to choose. */
+/** A subject — 'math', 'logic', 'attention', 'memory' — never a topic: topics are the core's to choose. */
 export type SubjectId = string
 
 /** Where an answer came from; the analytics split accuracy by it. */

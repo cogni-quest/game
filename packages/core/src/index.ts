@@ -7,6 +7,13 @@ export {
   type ChoiceOption,
 } from './answers/choice'
 export { cellAnswer, isCellAnswer, type Cell, type CellAnswer } from './answers/cell'
+export {
+  cellOrderAnswer,
+  firstMistake,
+  isCellOrderAnswer,
+  type CellOrderAnswer,
+  type OrderedCell,
+} from './answers/cellOrder'
 export { isPickAnswer, MAX_PICK_OPTIONS, pickAnswer, type PickAnswer } from './answers/pick'
 export { isNumberAnswer, numberAnswer, type NumberAnswer } from './answers/number'
 export {
