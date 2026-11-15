@@ -799,6 +799,8 @@ body {
 
 .lights-buttons {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -842,6 +844,7 @@ body {
   cursor: pointer;
 }
 
+.lights-again,
 .lights-undo {
   background: #e8e1d0;
 }

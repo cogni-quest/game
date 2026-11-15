@@ -44,6 +44,12 @@ const hexOf = (colour: string | undefined): string | undefined =>
 
 const samePlace = (a: Cell, b: Cell) => a.row === b.row && a.column === b.column
 
+/**
+ * How many times the child may watch the lights again. One second look helps
+ * when the first one slipped; more would turn remembering into tapping along.
+ */
+const REPLAYS = 1
+
 /** One empty list for a task that is not ours, so the effects do not rerun on every render. */
 const NONE: readonly OrderedCell[] = []
 
@@ -52,7 +58,8 @@ const NONE: readonly OrderedCell[] = []
  *   flashes never start before the eyes are on them;
  * - `showing` — the lights flash one by one, the panel cannot be pressed;
  * - `input` — the child presses the lights back; «Назад» takes back the last
- *   press, «Готово» hands the order in once it is full.
+ *   press, «Готово» hands the order in once it is full, «Ещё раз» clears the
+ *   presses and goes back to `showing` while a replay is left.
  */
 type Phase = 'ready' | 'showing' | 'input'
 
@@ -65,8 +72,8 @@ type Phase = 'ready' | 'showing' | 'input'
 export type LightsCue = 'show' | 'flash' | 'press' | 'undo' | 'choose' | 'replay'
 
 /**
- * The panel of lights. The flashes are shown once — a memory task shown again
- * would be a different task. When the colour is asked, a row of colour
+ * The panel of lights. The flashes are shown once, and may be watched once
+ * more with «Ещё раз» (`REPLAYS`) — that starts the pressing over. When the colour is asked, a row of colour
  * buttons sits under the panel: choose a colour, then press the light, and it
  * lights in that colour. After a miss the right order is played again,
  * slowly, and stays on the panel numbered — in its colours — with the first
@@ -85,6 +92,7 @@ export function AnswerView({ task, io }: { readonly task: Task; readonly io: Ans
   const [pressed, setPressed] = useState<readonly OrderedCell[]>([])
   const [given, setGiven] = useState<readonly OrderedCell[] | null>(null)
   const [brush, setBrush] = useState<Colour | null>(null)
+  const [replaysLeft, setReplaysLeft] = useState(REPLAYS)
   const [replayed, setReplayed] = useState(() =>
     revealedAtStart && isLightsTask(task) ? task.answer.expected.length : 0,
   )
@@ -217,7 +225,9 @@ export function AnswerView({ task, io }: { readonly task: Task; readonly io: Ans
     if (phase === 'ready') {
       return coloured ? 'Запомни, где и каким цветом. Готов?' : 'Готов? Смотри внимательно'
     }
-    if (phase === 'showing') return 'Смотри и запоминай…'
+    if (phase === 'showing') {
+      return replaysLeft < REPLAYS ? 'Смотри ещё раз…' : 'Смотри и запоминай…'
+    }
     if (right) return 'Всё верно!'
     if (needsBrush) return 'Выбери цвет, потом нажми огонёк'
     return `Нажато ${String(pressed.length)} из ${String(length)}`
@@ -351,6 +361,19 @@ export function AnswerView({ task, io }: { readonly task: Task; readonly io: Ans
             </button>
           ) : (
             <>
+              <button
+                type="button"
+                className="lights-again"
+                disabled={!canPress || replaysLeft === 0}
+                onClick={() => {
+                  setPressed([])
+                  setReplaysLeft(replaysLeft - 1)
+                  setPhase('showing')
+                  cue('show')
+                }}
+              >
+                ↻ Ещё раз
+              </button>
               <button
                 type="button"
                 className="lights-undo"
