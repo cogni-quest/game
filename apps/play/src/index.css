@@ -630,6 +630,18 @@ body {
   line-height: 1;
 }
 
+/* The two ends of the route: the board's footprints, and «?» where the answer is. */
+.dictation-mark {
+  border-style: dashed;
+  background: transparent;
+  color: #2b2620;
+}
+
+.dictation-hint {
+  margin: -0.25rem 0 0;
+  font-size: 1.1rem;
+}
+
 .dictation-answer {
   display: flex;
   flex-direction: column;
@@ -671,6 +683,7 @@ body {
 }
 
 .grid .dictation-prompt figcaption,
+.grid .dictation-hint,
 .grid .dictation-buttons {
   display: none;
 }

@@ -247,6 +247,18 @@
   color: #c0392b;
 }
 
+.detective .dictation-arrow.dictation-mark {
+  border: 2px dashed var(--cream);
+  background: transparent;
+  box-shadow: none;
+  color: var(--cream);
+}
+
+.detective .dictation-hint {
+  color: var(--cream);
+  opacity: 0.85;
+}
+
 .detective .dictation-board {
   fill: #d9c9a3;
 }
