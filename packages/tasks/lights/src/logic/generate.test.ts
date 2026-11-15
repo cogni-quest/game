@@ -17,12 +17,13 @@ const at = ({ row, column }: Cell) => `${String(row)}.${String(column)}`
 /** The sections of memory.json, and a few more. */
 const KNOBS: readonly LightsKnobs[] = [
   { size: 3, length: 3 },
-  { size: 3, length: 5 },
+  { size: 3, length: 4 },
   { size: 3, length: 3, colours: 2 },
   { size: 4, length: 4, colours: 2 },
   { size: 4, length: 4, colours: 3 },
   { size: 3, length: 4, order: 'backward' },
   { size: 3, length: 3, order: 'backward', colours: 2 },
+  { size: 3, length: 5 },
   { size: 3, length: 9 },
   { size: 5, length: 9, order: 'forward', colours: 4 },
 ]
