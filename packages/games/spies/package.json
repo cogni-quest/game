@@ -1,0 +1,13 @@
+{
+  "name": "@cogni/game-spies",
+  "private": true,
+  "type": "module",
+  "description": "Game plugin: secret agents — read the report and catch the spy in his window, three houses a mission",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "dependencies": {
+    "@cogni/core": "*",
+    "react": "^19.3.1"
+  }
+}

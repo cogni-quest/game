@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { attention, logicPeterson, mathMoro, memory } from '@cogni/curriculum'
+import { attention, logicPeterson, mathMoro, memory, space } from '@cogni/curriculum'
 import { describe, expect, it } from 'vitest'
 
 /**
@@ -183,7 +183,7 @@ describe('the logic branch of docs/CURRICULUM.md and its data', () => {
 })
 
 describe('the memory and attention section of docs/CURRICULUM.md and its data', () => {
-  const section = doc.slice(doc.indexOf('## Память и внимание'), doc.indexOf('## Сверить'))
+  const section = doc.slice(doc.indexOf('## Память и внимание'), doc.indexOf('## Ориентация'))
   const ids = [...section.matchAll(/^#### ([a-z-]+) «/gm)].map((m) => m[1] ?? '')
   /** Attention first, then memory: the order the section lists them. */
   const topics = [...attention.topics, ...memory.topics]
@@ -196,6 +196,27 @@ describe('the memory and attention section of docs/CURRICULUM.md and its data', 
 
   it('ticks «Есть» on exactly the formats the data has', () => {
     const mismatched = topics
+      .filter((t) => {
+        const inData = t.steps.flatMap((s) => s.formats.map((f) => f.title ?? f.plugin)).sort()
+        return JSON.stringify(tickedFormats(t.id)) !== JSON.stringify(inData)
+      })
+      .map((t) => t.id)
+    expect(mismatched).toEqual([])
+  })
+})
+
+describe('the space section of docs/CURRICULUM.md and its data', () => {
+  const section = doc.slice(doc.indexOf('## Ориентация в пространстве'), doc.indexOf('## Сверить'))
+  const ids = [...section.matchAll(/^#### ([a-z-]+) «/gm)].map((m) => m[1] ?? '')
+
+  it('lists the topics of the data, in the same order, all marked done', () => {
+    expect(ids).toEqual(space.topics.map((t) => t.id))
+    const done = [...section.matchAll(/^#### ([a-z-]+) «.*✅ сделано/gm)].map((m) => m[1])
+    expect(done).toEqual(ids)
+  })
+
+  it('ticks «Есть» on exactly the formats the data has', () => {
+    const mismatched = space.topics
       .filter((t) => {
         const inData = t.steps.flatMap((s) => s.formats.map((f) => f.title ?? f.plugin)).sort()
         return JSON.stringify(tickedFormats(t.id)) !== JSON.stringify(inData)

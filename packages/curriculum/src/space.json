@@ -1,0 +1,73 @@
+{
+  "subject": "space",
+  "textbook": "own",
+  "topics": [
+    {
+      "id": "floors-sides",
+      "title": "Этажи, лево и право",
+      "needs": [],
+      "steps": [
+        {
+          "id": "floors-sides",
+          "title": "Найди окно по описанию",
+          "attempts": 1,
+          "formats": [
+            {
+              "plugin": "spy-house",
+              "title": "найди шпиона",
+              "sections": [
+                {
+                  "title": "1 окно: этаж",
+                  "knobs": { "windows": 1, "recipes": [["floor"]] }
+                },
+                {
+                  "title": "2 окна: этаж + левое / правое",
+                  "knobs": { "windows": 2, "recipes": [["floor", "edge"]] }
+                },
+                {
+                  "title": "3 окна: этаж + крайнее / среднее",
+                  "knobs": { "windows": 3, "recipes": [["floor", "edge"]] }
+                },
+                {
+                  "title": "4 окна: этаж + сразу слева / справа от приметы",
+                  "knobs": { "windows": 4, "landmarks": 7, "recipes": [["floor", "beside"]] }
+                },
+                {
+                  "title": "5 окон: этаж + второе окно слева, между или сразу слева",
+                  "knobs": {
+                    "windows": 5,
+                    "landmarks": 9,
+                    "recipes": [
+                      ["floor", "ordinal"],
+                      ["floor", "between"],
+                      ["floor", "beside"]
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "plugin": "spy-house",
+              "title": "★ без номера этажа",
+              "stars": 1,
+              "sections": [
+                {
+                  "title": "5 окон: над / под + слева, между или второе окно",
+                  "knobs": {
+                    "windows": 5,
+                    "landmarks": 9,
+                    "recipes": [
+                      ["vertical", "beside"],
+                      ["vertical", "between"],
+                      ["vertical", "ordinal"]
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

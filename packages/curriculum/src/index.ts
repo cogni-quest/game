@@ -3,6 +3,7 @@ import { parseGraph, type Graph } from './graph'
 import logicPetersonRaw from './logic-peterson.json'
 import mathMoroRaw from './math-moro.json'
 import memoryRaw from './memory.json'
+import spaceRaw from './space.json'
 
 export {
   allSteps,
@@ -29,6 +30,13 @@ export const attention: Graph = parseGraph(attentionRaw)
  */
 export const memory: Graph = parseGraph(memoryRaw)
 
+/**
+ * Finding one's way in space — floors, left and right, between, above and
+ * below. Its own subject: with dyspraxia it is a skill of its own, and the
+ * spies' houses belong to no other game.
+ */
+export const space: Graph = parseGraph(spaceRaw)
+
 /** A subject and its graph, with the name people see for it. */
 export interface Subject {
   /** The graph's own `subject`, never typed twice. */
@@ -48,4 +56,5 @@ export const SUBJECTS: readonly Subject[] = [
   subject('Логика', logicPeterson),
   subject('Внимание', attention),
   subject('Память', memory),
+  subject('Ориентация', space),
 ]

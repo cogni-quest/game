@@ -883,6 +883,397 @@ body {
   max-width: 140px;
 }
 
+/* ---- «Найди шпиона»: the report and the house ---- */
+
+.spy-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.spy-prompt figcaption {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.spy-report {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* A landmark in words: the same picture as in its window, a little larger than the letters. */
+.spy-landmark {
+  display: inline-block;
+  font-size: 1.25em;
+  line-height: 1;
+  vertical-align: -0.1em;
+}
+
+.spy-answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spy-answer svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* The house's colours are variables, so a game can paint its own night or day. */
+.spy-wall {
+  fill: var(--spy-wall, #8a8f9f);
+}
+
+.spy-roof {
+  fill: var(--spy-roof, #4a4f62);
+}
+
+.spy-ledge {
+  stroke: var(--spy-ledge, rgba(0, 0, 0, 0.18));
+  stroke-width: 3;
+}
+
+.spy-street {
+  fill: var(--spy-street, #5a5f6e);
+}
+
+.spy-antenna {
+  stroke: var(--spy-roof, #4a4f62);
+  stroke-width: 3;
+}
+
+.spy-antenna-light {
+  fill: #ff5a5a;
+}
+
+.spy-glass {
+  fill: var(--spy-glass, #2b3a5e);
+  stroke: var(--spy-frame, #e9e4d4);
+  stroke-width: 4;
+  transition:
+    opacity 0.4s ease,
+    fill 0.2s ease;
+}
+
+.spy-window.has-landmark .spy-glass {
+  fill: var(--spy-glass-lit, #f5d97a);
+}
+
+.spy-frame {
+  stroke: var(--spy-frame, #e9e4d4);
+  stroke-width: 3;
+  opacity: 0.6;
+}
+
+.spy-window.has-landmark .spy-frame {
+  opacity: 0.25;
+}
+
+.spy-sill {
+  fill: var(--spy-frame, #e9e4d4);
+}
+
+.spy-window:not(.has-landmark):hover .spy-glass {
+  fill: var(--spy-glass-hover, #3d5287);
+}
+
+.spy-window.is-chosen .spy-glass {
+  fill: var(--spy-glass-chosen, #45609e);
+  stroke: var(--spy-chosen, #ffcf3f);
+}
+
+.spy-reticle {
+  fill: none;
+  stroke: var(--spy-chosen, #ffcf3f);
+  stroke-width: 4;
+  stroke-dasharray: 9 6;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spy-turn 6s linear infinite;
+}
+
+/* The walk-through: what a clue rules out fades back, what is still in play stays bright. */
+.spy-window.is-out {
+  opacity: 0.25;
+}
+
+.spy-window.is-spy .spy-glass,
+.spy-window.is-caught .spy-glass {
+  fill: var(--spy-glass-lit, #f5d97a);
+  stroke: var(--spy-right, #4fc27e);
+}
+
+.spy-window.is-spy {
+  opacity: 1;
+}
+
+.spy-window.is-anchor .spy-glass {
+  stroke: var(--spy-chosen, #e0a100);
+}
+
+.spy-figure {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spy-peek 0.5s ease-out;
+}
+
+.spy-coat {
+  fill: #2b2f3d;
+}
+
+.spy-collar {
+  fill: #e9e4d4;
+}
+
+.spy-face {
+  fill: #f0c9a0;
+}
+
+.spy-glasses,
+.spy-hat,
+.spy-hat-brim {
+  fill: #1d2030;
+}
+
+/* The missed spy: laughs, runs along the ledge, leaves a shadow in his window. */
+.spy-legs {
+  display: none;
+}
+
+.spy-leg {
+  stroke: #1d2030;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.spy-grin {
+  fill: #7a2a2a;
+}
+
+.spy-figure.is-giggle {
+  animation: spy-giggle 0.28s ease-in-out infinite alternate;
+}
+
+.spy-figure.is-run {
+  animation: spy-run 2.2s ease-in forwards;
+}
+
+.spy-figure.is-run .spy-legs {
+  display: inline;
+}
+
+.spy-figure.is-run .spy-leg.a {
+  transform-box: view-box;
+  transform-origin: -7px 26px;
+  animation: spy-stride 0.18s linear infinite alternate;
+}
+
+.spy-figure.is-run .spy-leg.b {
+  transform-box: view-box;
+  transform-origin: 7px 26px;
+  animation: spy-stride 0.18s linear infinite alternate-reverse;
+}
+
+.spy-figure.is-ghost {
+  opacity: 0.35;
+  animation: spy-peek 0.6s ease-out;
+}
+
+.spy-giggle {
+  animation: spy-pop 0.3s ease-out;
+}
+
+.spy-giggle rect,
+.spy-giggle path {
+  fill: #fffdf4;
+  stroke: #1d2030;
+  stroke-width: 2;
+}
+
+.spy-giggle text {
+  fill: #1d2030;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.spy-missed line {
+  stroke: var(--spy-wrong, #ff5a4b);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.spy-floor-band {
+  fill: none;
+  stroke: var(--spy-chosen, #ffcf3f);
+  stroke-width: 4;
+  stroke-dasharray: 10 6;
+}
+
+.spy-floor-numbers text,
+.spy-count text {
+  fill: var(--spy-number, #3a3f52);
+  font-size: 20px;
+  font-weight: 800;
+  animation: spy-peek 0.4s ease-out;
+}
+
+.spy-floor-numbers text.is-asked,
+.spy-count text.is-asked {
+  fill: var(--spy-chosen, #e0a100);
+  font-size: 26px;
+}
+
+.spy-arrow {
+  stroke: var(--spy-chosen, #e0a100);
+  stroke-width: 5;
+  stroke-linecap: round;
+  animation: spy-peek 0.4s ease-out;
+}
+
+.spy-arrow-head {
+  fill: var(--spy-chosen, #e0a100);
+}
+
+.spy-status {
+  margin: 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.spy-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1.15rem;
+  list-style: none;
+}
+
+.spy-steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.6rem;
+  transition: opacity 0.3s ease;
+}
+
+.spy-steps li.is-todo {
+  opacity: 0.45;
+}
+
+.spy-steps li.is-now {
+  box-shadow: inset 0 0 0 2px var(--spy-chosen, #e0a100);
+  font-weight: 700;
+}
+
+.spy-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.spy-catch {
+  min-width: 12rem;
+  min-height: 4rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #ffcf3f;
+  font-size: 1.6rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.spy-catch:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* The overview shows the report and the house with the spy in it: the walk-through is for play. */
+.grid .spy-status,
+.grid .spy-steps {
+  display: none;
+}
+
+.grid .spy-report {
+  font-size: 0.95rem;
+}
+
+.grid .spy-answer svg {
+  max-width: 170px;
+}
+
+@keyframes spy-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spy-giggle {
+  from {
+    transform: rotate(-7deg) translateY(0);
+  }
+  to {
+    transform: rotate(7deg) translateY(-3px);
+  }
+}
+
+@keyframes spy-run {
+  0% {
+    transform: none;
+  }
+  18% {
+    transform: translateY(-16px);
+  }
+  32% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translate(var(--spy-run), 6px);
+  }
+}
+
+@keyframes spy-stride {
+  from {
+    transform: rotate(-28deg);
+  }
+  to {
+    transform: rotate(28deg);
+  }
+}
+
+@keyframes spy-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spy-peek {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---- The child's menu: a game launcher, not a playroom ---- */
 
 .menu {

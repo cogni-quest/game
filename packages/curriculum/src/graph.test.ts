@@ -36,6 +36,7 @@ import { olympiadPlugin } from '@cogni/task-olympiad/logic'
 import { sortPlugin } from '@cogni/task-sort/logic'
 import { dictationPlugin } from '@cogni/task-dictation/logic'
 import { lightsPlugin } from '@cogni/task-lights/logic'
+import { spyHousePlugin } from '@cogni/task-spy-house/logic'
 import { describe, expect, it } from 'vitest'
 
 import { allSteps, parseGraph, type CurriculumStep } from './graph'
@@ -79,6 +80,7 @@ const registry = createRegistry([
   sortPlugin,
   dictationPlugin,
   lightsPlugin,
+  spyHousePlugin,
 ])
 const SAMPLES = 3_000
 /** Sampling every section of every topic takes seconds, more under a parallel run. */

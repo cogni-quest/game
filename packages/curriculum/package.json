@@ -44,6 +44,7 @@
     "@cogni/task-sequence": "*",
     "@cogni/task-shapes": "*",
     "@cogni/task-sort": "*",
+    "@cogni/task-spy-house": "*",
     "@cogni/task-sudoku": "*",
     "@cogni/task-times": "*",
     "@cogni/task-units": "*",
