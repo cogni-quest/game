@@ -17,10 +17,6 @@
               "title": "найди шпиона",
               "sections": [
                 {
-                  "title": "1 окно: этаж",
-                  "knobs": { "windows": 1, "recipes": [["floor"]] }
-                },
-                {
                   "title": "2 окна: этаж + левое / правое",
                   "knobs": { "windows": 2, "recipes": [["floor", "edge"]] }
                 },

@@ -216,7 +216,7 @@ function Operation({
 }) {
   const [briefed, setBriefed] = useState(false)
   const [caught, setCaught] = useState(0)
-  const [task, setTask] = useState<Task>(() => reportFor(host, mission.tier))
+  const [task, setTask] = useState<Task>(() => reportFor(host, mission.asks))
   const [outcome, setOutcome] = useState<Outcome<unknown> | null>(null)
   const [opened, setOpened] = useState<Mission | null>(null)
 
@@ -245,7 +245,7 @@ function Operation({
   }
 
   const nextHouse = () => {
-    setTask(reportFor(host, mission.tier))
+    setTask(reportFor(host, mission.asks))
     setOutcome(null)
   }
 

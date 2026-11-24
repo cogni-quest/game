@@ -13,8 +13,9 @@ import {
 } from './missions'
 
 describe('the agency', () => {
-  it('has one mission per tier, simplest first, the boss last, each its own leader', () => {
-    expect(MISSIONS.map((m) => m.tier)).toEqual([1, 2, 3, 4, 5, 'boss'])
+  it('has one mission per tier, simplest first, the last asking the boss reports, each its own leader', () => {
+    expect(MISSIONS.map((m) => m.tier)).toEqual([1, 2, 3, 4, 5])
+    expect(MISSIONS.map((m) => m.asks)).toEqual([1, 2, 3, 4, 'boss'])
     expect(new Set(MISSIONS.map((m) => m.codename)).size).toBe(MISSIONS.length)
   })
 
@@ -38,11 +39,11 @@ describe('the agency', () => {
   })
 
   it('opens the next mission when the hardest open one is done, and only then', () => {
-    expect(afterMission(START, 1)).toEqual({ opened: 2 })
-    expect(afterMission({ opened: 3 }, 1)).toEqual({ opened: 3 })
-    expect(afterMission({ opened: 3 }, 3)).toEqual({ opened: 4 })
-    expect(afterMission({ opened: 6 }, 'boss')).toEqual({ opened: 6 })
-    expect(isOpen(afterMission({ opened: 5 }, 5), 'boss')).toBe(true)
+    expect(afterMission(START, 1)).toEqual({ opened: 2, version: 2 })
+    expect(afterMission({ opened: 3, version: 2 }, 1)).toEqual({ opened: 3, version: 2 })
+    expect(afterMission({ opened: 3, version: 2 }, 3)).toEqual({ opened: 4, version: 2 })
+    expect(afterMission({ opened: 5, version: 2 }, 5)).toEqual({ opened: 5, version: 2 })
+    expect(isOpen(afterMission({ opened: 4, version: 2 }, 4), 5)).toBe(true)
   })
 
   it.each([undefined, null, 'x', {}, { opened: 'all' }, { opened: 1.5 }])(
@@ -53,14 +54,24 @@ describe('the agency', () => {
   )
 
   it('keeps kept progress within the agency', () => {
-    expect(readProgress({ opened: 4 })).toEqual({ opened: 4 })
-    expect(readProgress({ opened: 99 })).toEqual({ opened: MISSIONS.length })
-    expect(readProgress({ opened: 0 })).toEqual({ opened: 1 })
+    expect(readProgress({ opened: 4, version: 2 })).toEqual({ opened: 4, version: 2 })
+    expect(readProgress({ opened: 99, version: 2 })).toEqual({
+      opened: MISSIONS.length,
+      version: 2,
+    })
+    expect(readProgress({ opened: 0, version: 2 })).toEqual(START)
+  })
+
+  it('reads progress kept while there was a one-window mission as the same missions open', () => {
+    expect(readProgress({ opened: 1 })).toEqual(START)
+    expect(readProgress({ opened: 2 })).toEqual({ opened: 1, version: 2 })
+    expect(readProgress({ opened: 4 })).toEqual({ opened: 3, version: 2 })
+    expect(readProgress({ opened: 6 })).toEqual({ opened: 5, version: 2 })
   })
 
   it('shows every mission open with ?all in the address, and only then', () => {
-    expect(shown(START, '?all')).toEqual({ opened: MISSIONS.length })
+    expect(shown(START, '?all')).toEqual({ opened: MISSIONS.length, version: 2 })
     expect(shown(START, '')).toEqual(START)
-    expect(shown({ opened: 3 }, '?allow')).toEqual({ opened: 3 })
+    expect(shown({ opened: 3, version: 2 }, '?allow')).toEqual({ opened: 3, version: 2 })
   })
 })

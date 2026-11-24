@@ -25,7 +25,6 @@ function sample(knobs: SpyHouseKnobs, seed = 17): SpyHouseTask[] {
 
 /** The sections of space.json. */
 const KNOBS: readonly SpyHouseKnobs[] = [
-  { windows: 1, recipes: [['floor']] },
   { windows: 2, recipes: [['floor', 'edge']] },
   { windows: 3, recipes: [['floor', 'edge']] },
   { windows: 4, landmarks: 7, recipes: [['floor', 'beside']] },
@@ -163,7 +162,7 @@ describe('generateSpyHouse', () => {
   })
 
   it('uses every recipe of a section', () => {
-    const knobs = KNOBS[5]
+    const knobs = KNOBS[4]
     if (!knobs) throw new Error('no section')
     const used = new Set(sample(knobs).map((task) => task.prompt.clues[1]?.kind))
     expect(used).toEqual(new Set(['beside', 'between', 'ordinal']))

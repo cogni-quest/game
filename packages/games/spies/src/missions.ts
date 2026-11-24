@@ -5,7 +5,10 @@ export type Disguise = 'glasses' | 'mask' | 'moustache' | 'monocle'
 
 /** One mission per tier: whose gang it is, the briefing, and how its leader looks. */
 export interface Mission {
+  /** How strong the mission is: its stars on the card and the coins it pays. */
   readonly tier: Tier
+  /** The tier of the reports the game asks the core for. */
+  readonly asks: Tier
   /** The leader's code name. */
   readonly codename: string
   /** What the curator says before it starts: one or two short sentences. */
@@ -16,21 +19,15 @@ export interface Mission {
 }
 
 /**
- * The missions, simplest first. The tier is how hard the reports are; the
- * game asks the core for tasks of that tier and never names a topic, so the
- * briefings never promise what the reports will say.
+ * The missions, simplest first. The game asks the core for reports of the
+ * mission's `asks` tier and never names a topic, so the briefings never promise what
+ * the reports will say. Five missions, paying 1 to 5: the last asks the
+ * boss's reports, the hardest there are, but pays as tier 5.
  */
 export const MISSIONS: readonly Mission[] = [
   {
     tier: 1,
-    codename: 'Тень',
-    briefing: 'Банда Тени заняла три дома на нашей улице. В каждом доме прячется один шпион.',
-    coat: '#56607f',
-    hat: 'fedora',
-    disguise: 'glasses',
-  },
-  {
-    tier: 2,
+    asks: 1,
     codename: 'Хамелеон',
     briefing: 'Хамелеон и его помощники меняют укрытия. Найди всех троих, пока они не ускользнули.',
     coat: '#3f8a63',
@@ -38,7 +35,8 @@ export const MISSIONS: readonly Mission[] = [
     disguise: 'glasses',
   },
   {
-    tier: 3,
+    tier: 2,
+    asks: 2,
     codename: 'Фантом',
     briefing: 'Фантом появляется ночью в окнах высоких домов. Три дома — три агента.',
     coat: '#7d5aa6',
@@ -46,7 +44,8 @@ export const MISSIONS: readonly Mission[] = [
     disguise: 'mask',
   },
   {
-    tier: 4,
+    tier: 3,
+    asks: 3,
     codename: 'Лис',
     briefing: 'Хитрый Лис запутывает следы. Читай донесение до последнего слова.',
     coat: '#c66a2f',
@@ -54,7 +53,8 @@ export const MISSIONS: readonly Mission[] = [
     disguise: 'moustache',
   },
   {
-    tier: 5,
+    tier: 4,
+    asks: 4,
     codename: 'Профессор',
     briefing: 'Профессор шифрует донесения. В них важно каждое слово.',
     coat: '#3c6fa8',
@@ -62,7 +62,8 @@ export const MISSIONS: readonly Mission[] = [
     disguise: 'monocle',
   },
   {
-    tier: 'boss',
+    tier: 5,
+    asks: 'boss',
     codename: 'Мистер Икс',
     briefing: 'Мистер Икс — главарь всех шпионов. Его донесения самые хитрые.',
     coat: '#2b2f3d',
@@ -107,17 +108,22 @@ export function tipFor(number: number): string {
  */
 export interface Progress {
   readonly opened: number
+  /**
+   * Marks progress kept since the one-window mission left. Progress kept
+   * before then counted that mission too, so it is one mission ahead.
+   */
+  readonly version: 2
 }
 
-export const START: Progress = { opened: 1 }
+export const START: Progress = { opened: 1, version: 2 }
 
 /** Progress from whatever the host kept, or the start when it is missing or not ours. */
 export function readProgress(stored: unknown): Progress {
   if (typeof stored !== 'object' || stored === null || !('opened' in stored)) return START
   const { opened } = stored
-  return typeof opened === 'number' && Number.isInteger(opened)
-    ? { opened: Math.min(Math.max(opened, 1), MISSIONS.length) }
-    : START
+  if (typeof opened !== 'number' || !Number.isInteger(opened)) return START
+  const counted = 'version' in stored && stored.version === 2 ? opened : opened - 1
+  return { opened: Math.min(Math.max(counted, 1), MISSIONS.length), version: 2 }
 }
 
 /**
@@ -125,7 +131,7 @@ export function readProgress(stored: unknown): Progress {
  * address has `?all` — for a parent to try them all. Never saved.
  */
 export function shown(progress: Progress, search: string): Progress {
-  return new URLSearchParams(search).has('all') ? { opened: MISSIONS.length } : progress
+  return new URLSearchParams(search).has('all') ? { opened: MISSIONS.length, version: 2 } : progress
 }
 
 export function isOpen(progress: Progress, tier: Tier): boolean {
@@ -136,6 +142,6 @@ export function isOpen(progress: Progress, tier: Tier): boolean {
 export function afterMission(progress: Progress, tier: Tier): Progress {
   const index = MISSIONS.findIndex((m) => m.tier === tier)
   return index === progress.opened - 1 && progress.opened < MISSIONS.length
-    ? { opened: progress.opened + 1 }
+    ? { opened: progress.opened + 1, version: 2 }
     : progress
 }
